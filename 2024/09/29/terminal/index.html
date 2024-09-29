@@ -411,7 +411,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-29 18:34:56'>2024-09-29 18:30</time>
+            Created At : <time class="date" title='Updated At: 2024-09-29 18:37:01'>2024-09-29 18:30</time>
         
     </div>
     <div class="article-meta">
@@ -433,7 +433,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="toc-text">会话管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%92%8C%E9%9D%A2%E6%9D%BF%E6%93%8D%E4%BD%9C"><span class="toc-text">窗口和面板操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD"><span class="toc-text">关闭</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%92%8C%E9%9D%A2%E6%9D%BF%E6%93%8D%E4%BD%9C%EF%BC%88%E6%9B%B4%E9%AB%98%E7%BA%A7%EF%BC%89"><span class="toc-text">窗口和面板操作（更高级）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%92%8C%E8%B0%83%E6%95%B4"><span class="toc-text">设置和调整</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#screen"><span class="toc-text">screen</span></a>
     
 <style>
     .left-col .switch-btn,
@@ -449,58 +449,133 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><code>screen</code> 是一个强大的终端多路复用工具，以下是一些常用指令：</p>
+        <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
+<li><p><strong>启动 tmux 会话</strong>:</p>
+<p>  <code>tmux</code></p>
+</li>
+<li><p><strong>新建 tmux 会话</strong>:</p>
+<p>  <code>tmux new -s session_name</code></p>
+</li>
+</ul>
+<h3 id="会话管理"><a href="#会话管理" class="headerlink" title="会话管理"></a>会话管理</h3><ul>
+<li><p><strong>列出会话</strong>:</p>
+<p>  <code>tmux ls</code></p>
+</li>
+<li><p><strong>附加到会话</strong>:</p>
+<p>  <code>tmux attach -t session_name</code></p>
+</li>
+<li><p><strong>分离会话</strong>:</p>
+<ul>
+<li><code>Ctrl + b</code> 然后 <code>d</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="窗口和面板操作"><a href="#窗口和面板操作" class="headerlink" title="窗口和面板操作"></a>窗口和面板操作</h3><ul>
+<li><strong>创建新窗口</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>c</code></li>
+</ul>
+</li>
+<li><strong>切换窗口</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>n</code>（下一个窗口）</li>
+<li><code>Ctrl + b</code> 然后 <code>p</code>（上一个窗口）</li>
+<li><code>Ctrl + b</code> 然后窗口编号（如 <code>0</code>, <code>1</code>, <code>2</code>）</li>
+</ul>
+</li>
+<li><strong>关闭当前窗口</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>&amp;</code></li>
+</ul>
+</li>
+<li><strong>分割窗口</strong>:<ul>
+<li><strong>水平分割</strong>: <code>Ctrl + b</code> 然后 <code>%</code></li>
+<li><strong>垂直分割</strong>: <code>Ctrl + b</code> 然后 <code>&quot;</code></li>
+</ul>
+</li>
+<li><strong>切换面板</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>o</code>（切换到下一个面板）</li>
+<li><code>Ctrl + b</code> 然后 <code>q</code>（显示面板编号）</li>
+</ul>
+</li>
+<li><strong>调整面板大小</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>:</code>，输入 <code>resize-pane -D</code>（向下调整），<code>-U</code>（向上调整），<code>-L</code>（向左调整），<code>-R</code>（向右调整）</li>
+</ul>
+</li>
+<li><strong>关闭当前面板</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>x</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h2><pre><code>ctrl + d  关闭窗口
+</code></pre>
+<pre><code>tmux kill-server
+</code></pre>
+<h3 id="窗口和面板操作（更高级）"><a href="#窗口和面板操作（更高级）" class="headerlink" title="窗口和面板操作（更高级）"></a>窗口和面板操作（更高级）</h3><ul>
+<li><strong>重命名窗口</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>,</code>（输入新名称）</li>
+</ul>
+</li>
+<li><strong>复制模式</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>[</code></li>
+<li><strong>选择文本</strong>: 使用箭头键移动光标，按 <code>Space</code> 开始选择，<code>Enter</code> 复制选择的文本</li>
+<li><strong>粘贴文本</strong>: <code>Ctrl + b</code> 然后 <code>]</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="设置和调整"><a href="#设置和调整" class="headerlink" title="设置和调整"></a>设置和调整</h3><ul>
+<li><strong>打开 tmux 命令提示符</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>:</code></li>
+</ul>
+</li>
+<li><strong>查看帮助</strong>:<ul>
+<li><code>Ctrl + b</code> 然后 <code>?</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="screen"><a href="#screen" class="headerlink" title="screen"></a>screen</h1><p><code>screen</code> 是一个强大的终端多路复用工具，以下是一些常用指令：</p>
 <ol>
-<li><strong>启动新会话</strong>：</li>
-</ol>
+<li><p><strong>启动新会话</strong>：</p>
 <pre><code class="bash">screen
 </code></pre>
-<ol start="2">
-<li><strong>命名会话</strong>：</li>
-</ol>
+</li>
+<li><p><strong>命名会话</strong>：</p>
 <pre><code class="bash">screen -S &lt;session_name&gt;
 </code></pre>
-<ol start="3">
-<li><strong>列出会话</strong>：</li>
-</ol>
+</li>
+<li><p><strong>列出会话</strong>：</p>
 <pre><code class="bash">screen -ls
 </code></pre>
-<ol start="4">
-<li><strong>重新连接会话</strong>：</li>
-</ol>
+</li>
+<li><p><strong>重新连接会话</strong>：</p>
 <pre><code class="bash">screen -r &lt;session_name&gt;
 </code></pre>
-<ol start="5">
-<li><strong>分离会话</strong>（保持会话在后台运行）：</li>
-</ol>
+</li>
+<li><p><strong>分离会话</strong>（保持会话在后台运行）：</p>
 <ul>
 <li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>D</code></li>
 </ul>
-<ol start="6">
-<li><strong>终止会话</strong>：</li>
-</ol>
+</li>
+<li><p><strong>终止会话</strong>：</p>
 <ul>
 <li>在会话中输入 <code>exit</code> 或者使用快捷键 <code>Ctrl + A</code> 然后按 <code>K</code> 来杀死当前窗口</li>
 </ul>
-<ol start="7">
-<li><strong>在会话间切换</strong>：</li>
-</ol>
+</li>
+<li><p><strong>在会话间切换</strong>：</p>
 <ul>
 <li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>N</code>（下一个）或 <code>P</code>（上一个）</li>
 </ul>
-<ol start="8">
-<li><strong>创建新窗口</strong>：</li>
-</ol>
+</li>
+<li><p><strong>创建新窗口</strong>：</p>
 <ul>
-<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>C</code></li>
+<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>C</code><br><strong>关闭窗口</strong></li>
+<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>k</code></li>
 </ul>
-<ol start="9">
-<li><strong>查看帮助</strong>：</li>
-</ol>
+</li>
+<li><p><strong>查看帮助</strong>：</p>
 <ul>
 <li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>?</code></li>
 </ul>
-<p><code>Ctrl + A</code> 然后按 <code>K</code> 来终止当前窗口</p>
+</li>
+</ol>
+<p>这些基本指令可以帮助你更好地使用 <code>screen</code>。如果需要更深入的功能或参数，可以查阅 <code>man screen</code>。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
