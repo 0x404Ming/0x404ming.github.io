@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hello World | ming&#39;s blog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="Hello World | ming&#39;s blog">
+  <title>jvms windows下Java版本切换 | ming&#39;s blog</title>
+  <meta name="keywords" content=" tools ">
+  <meta name="description" content="jvms windows下Java版本切换 | ming&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安全练习生：渗透测试、代码审计、应急响应、服务加固用于记录一些常见问题的解决方案，以及一些学习过程中的弯弯绕绕。">
 <meta property="og:type" content="website">
@@ -168,7 +168,7 @@
         <div data-rel="终端">
             
             终端
-            <small>(3)</small>
+            <small>(4)</small>
         </div>
         
     </li>
@@ -271,6 +271,15 @@
         
         
         <a  class="All 终端 "
+           href="/2024/09/29/jvms/"
+           data-tag="tools"
+           data-author="" >
+            <span class="post-title" title="jvms windows下Java版本切换">jvms windows下Java版本切换</span>
+            <span class="post-date" title="2024-09-29 19:41:00">2024/09/29</span>
+        </a>
+        
+        
+        <a  class="All 终端 "
            href="/2024/09/29/jenv/"
            data-tag="tools"
            data-author="" >
@@ -301,17 +310,8 @@
            href="/2024/09/29/command-cheatsheet/"
            data-tag="cheatsheet,常用命令"
            data-author="" >
-            <span class="post-title" title="command">command</span>
+            <span class="post-title" title="command 渗透中会用到的常用命令">command 渗透中会用到的常用命令</span>
             <span class="post-date" title="2024-09-29 17:25:44">2024/09/29</span>
-        </a>
-        
-        
-        <a  class="All "
-           href="/2024/09/29/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2024-09-29 13:49:34">2024/09/29</span>
         </a>
         
         
@@ -350,19 +350,34 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-jvms" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hello World</h1>
+        <h1 class="article-title">jvms windows下Java版本切换</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="终端">终端</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">tools</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-29 13:49:34'>2024-09-29 13:49</time>
+            Created At : <time class="date" title='Updated At: 2024-09-29 19:43:36'>2024-09-29 19:41</time>
         
     </div>
     <div class="article-meta">
@@ -384,7 +399,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jvms-windows%E5%B9%B3%E5%8F%B0Java%E7%89%88%E6%9C%AC%E5%88%87%E6%8D%A2%E5%B7%A5%E5%85%B7"><span class="toc-text">jvms windows平台Java版本切换工具</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -400,19 +415,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h1 id="jvms-windows平台Java版本切换工具"><a href="#jvms-windows平台Java版本切换工具" class="headerlink" title="jvms windows平台Java版本切换工具"></a>jvms windows平台Java版本切换工具</h1><p><strong>项目地址地址</strong></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ystyle/jvms">GitHub - ystyle&#x2F;jvms: JDK Version Manager (JVMS) for Windows</a></p>
+<p>下载二进制文件 配置系统环境变量</p>
+<p><strong>jdk 下载</strong></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/java/jdk/">https://repo.huaweicloud.com/java/jdk/</a></p>
+</blockquote>
+<p>e.g: add the <code>jdk 17.0.1</code></p>
+<ol>
+<li>copy jdk home folder to <code>jvms/store</code></li>
+<li>rename folder to <code>17.0.1</code></li>
+<li><code>jvms list</code>  check this</li>
+<li><code>jvms switch 17.0.1</code></li>
+<li><code>java -version</code> check jdk verison</li>
+</ol>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
