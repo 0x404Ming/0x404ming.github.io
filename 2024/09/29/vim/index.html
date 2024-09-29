@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>terminal | ming&#39;s blog</title>
+  <title>vim | ming&#39;s blog</title>
   <meta name="keywords" content=" tools ">
-  <meta name="description" content="terminal | ming&#39;s blog">
+  <meta name="description" content="vim | ming&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安全练习生：渗透测试、代码审计、应急响应、服务加固用于记录一些常见问题的解决方案，以及一些学习过程中的弯弯绕绕。">
 <meta property="og:type" content="website">
@@ -393,9 +393,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-terminal" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-vim" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">terminal</h1>
+        <h1 class="article-title">vim</h1>
     
     <div class="article-meta">
         
@@ -420,7 +420,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-29 18:37:01'>2024-09-29 18:30</time>
+            Created At : <time class="date" title='Updated At: 2024-09-29 18:50:10'>2024-09-29 18:49</time>
         
     </div>
     <div class="article-meta">
@@ -442,7 +442,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="toc-text">会话管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%92%8C%E9%9D%A2%E6%9D%BF%E6%93%8D%E4%BD%9C"><span class="toc-text">窗口和面板操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD"><span class="toc-text">关闭</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%92%8C%E9%9D%A2%E6%9D%BF%E6%93%8D%E4%BD%9C%EF%BC%88%E6%9B%B4%E9%AB%98%E7%BA%A7%EF%BC%89"><span class="toc-text">窗口和面板操作（更高级）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%92%8C%E8%B0%83%E6%95%B4"><span class="toc-text">设置和调整</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#screen"><span class="toc-text">screen</span></a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vim"><span class="toc-text">vim</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F"><span class="toc-text">命令行模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BF%BB%E9%A1%B5%E5%91%BD%E4%BB%A4"><span class="toc-text">翻页命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A8%A1%E5%BC%8F"><span class="toc-text">输入模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%95%E7%BA%BF%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="toc-text">底线命令模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-1"><span class="toc-text">常用命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%A8%A1%E5%BC%8F"><span class="toc-text">其他模式</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -458,133 +458,227 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
-<li><p><strong>启动 tmux 会话</strong>:</p>
-<p>  <code>tmux</code></p>
-</li>
-<li><p><strong>新建 tmux 会话</strong>:</p>
-<p>  <code>tmux new -s session_name</code></p>
-</li>
-</ul>
-<h3 id="会话管理"><a href="#会话管理" class="headerlink" title="会话管理"></a>会话管理</h3><ul>
-<li><p><strong>列出会话</strong>:</p>
-<p>  <code>tmux ls</code></p>
-</li>
-<li><p><strong>附加到会话</strong>:</p>
-<p>  <code>tmux attach -t session_name</code></p>
-</li>
-<li><p><strong>分离会话</strong>:</p>
-<ul>
-<li><code>Ctrl + b</code> 然后 <code>d</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="窗口和面板操作"><a href="#窗口和面板操作" class="headerlink" title="窗口和面板操作"></a>窗口和面板操作</h3><ul>
-<li><strong>创建新窗口</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>c</code></li>
-</ul>
-</li>
-<li><strong>切换窗口</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>n</code>（下一个窗口）</li>
-<li><code>Ctrl + b</code> 然后 <code>p</code>（上一个窗口）</li>
-<li><code>Ctrl + b</code> 然后窗口编号（如 <code>0</code>, <code>1</code>, <code>2</code>）</li>
-</ul>
-</li>
-<li><strong>关闭当前窗口</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>&amp;</code></li>
-</ul>
-</li>
-<li><strong>分割窗口</strong>:<ul>
-<li><strong>水平分割</strong>: <code>Ctrl + b</code> 然后 <code>%</code></li>
-<li><strong>垂直分割</strong>: <code>Ctrl + b</code> 然后 <code>&quot;</code></li>
-</ul>
-</li>
-<li><strong>切换面板</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>o</code>（切换到下一个面板）</li>
-<li><code>Ctrl + b</code> 然后 <code>q</code>（显示面板编号）</li>
-</ul>
-</li>
-<li><strong>调整面板大小</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>:</code>，输入 <code>resize-pane -D</code>（向下调整），<code>-U</code>（向上调整），<code>-L</code>（向左调整），<code>-R</code>（向右调整）</li>
-</ul>
-</li>
-<li><strong>关闭当前面板</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>x</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h2><pre><code>ctrl + d  关闭窗口
+        <h1 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h1><p>基本上 <code>vi/vim</code> 共分为三种模式，分别是<strong>命令行模式（Command mode）</strong> ，<strong>输入模式（Insert mode）</strong> 和<strong>底线命令模式（Last line mode）</strong> 。</p>
+<p>下面我们就详细来看看这三种模式的操作。</p>
+<h2 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h2><p>也称为交互模式，这是 <code>vim</code> 的默认模式，每次使用 <code>vim</code> 命令编辑文件的时候，就会先进入这个模式。</p>
+<pre><code class="bash"> vim config.txt
 </code></pre>
-<pre><code>tmux kill-server
-</code></pre>
-<h3 id="窗口和面板操作（更高级）"><a href="#窗口和面板操作（更高级）" class="headerlink" title="窗口和面板操作（更高级）"></a>窗口和面板操作（更高级）</h3><ul>
-<li><strong>重命名窗口</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>,</code>（输入新名称）</li>
-</ul>
-</li>
-<li><strong>复制模式</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>[</code></li>
-<li><strong>选择文本</strong>: 使用箭头键移动光标，按 <code>Space</code> 开始选择，<code>Enter</code> 复制选择的文本</li>
-<li><strong>粘贴文本</strong>: <code>Ctrl + b</code> 然后 <code>]</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="设置和调整"><a href="#设置和调整" class="headerlink" title="设置和调整"></a>设置和调整</h3><ul>
-<li><strong>打开 tmux 命令提示符</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>:</code></li>
-</ul>
-</li>
-<li><strong>查看帮助</strong>:<ul>
-<li><code>Ctrl + b</code> 然后 <code>?</code></li>
-</ul>
-</li>
-</ul>
-<h1 id="screen"><a href="#screen" class="headerlink" title="screen"></a>screen</h1><p><code>screen</code> 是一个强大的终端多路复用工具，以下是一些常用指令：</p>
-<ol>
-<li><p><strong>启动新会话</strong>：</p>
-<pre><code class="bash">screen
-</code></pre>
-</li>
-<li><p><strong>命名会话</strong>：</p>
-<pre><code class="bash">screen -S &lt;session_name&gt;
-</code></pre>
-</li>
-<li><p><strong>列出会话</strong>：</p>
-<pre><code class="bash">screen -ls
-</code></pre>
-</li>
-<li><p><strong>重新连接会话</strong>：</p>
-<pre><code class="bash">screen -r &lt;session_name&gt;
-</code></pre>
-</li>
-<li><p><strong>分离会话</strong>（保持会话在后台运行）：</p>
+<p>特征：</p>
 <ul>
-<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>D</code></li>
+<li>在这个模式下，你不能输入文本；</li>
+<li>它可以让我们在文本间移动，删除一行文本，复制黏贴文本，跳转到指定行，撤销操作，等等。</li>
 </ul>
-</li>
-<li><p><strong>终止会话</strong>：</p>
-<ul>
-<li>在会话中输入 <code>exit</code> 或者使用快捷键 <code>Ctrl + A</code> 然后按 <code>K</code> 来杀死当前窗口</li>
-</ul>
-</li>
-<li><p><strong>在会话间切换</strong>：</p>
-<ul>
-<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>N</code>（下一个）或 <code>P</code>（上一个）</li>
-</ul>
-</li>
-<li><p><strong>创建新窗口</strong>：</p>
-<ul>
-<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>C</code><br><strong>关闭窗口</strong></li>
-<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>k</code></li>
-</ul>
-</li>
-<li><p><strong>查看帮助</strong>：</p>
-<ul>
-<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>?</code></li>
-</ul>
-</li>
-</ol>
-<p>这些基本指令可以帮助你更好地使用 <code>screen</code>。如果需要更深入的功能或参数，可以查阅 <code>man screen</code>。</p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i</td>
+<td>切换到输入模式，以输入字符</td>
+</tr>
+<tr>
+<td>x</td>
+<td>删除当前光标所在处的字符</td>
+</tr>
+<tr>
+<td>X</td>
+<td>删除当前光标前一个字符</td>
+</tr>
+<tr>
+<td>:</td>
+<td>切换到底线命令模式，以在最底一行输入命令</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>跳转到文件开头</td>
+</tr>
+<tr>
+<td>G</td>
+<td>跳转到文件末尾</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除光标所在一整行数据，且临时存储到缓存区</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制整行文本到临时缓存区</td>
+</tr>
+<tr>
+<td>p</td>
+<td>将指定缓存区内容放在光标位置之下；整行文本放在行下面，若是非整行文本则放在光标后面</td>
+</tr>
+<tr>
+<td>P</td>
+<td>将指定缓冲区的内容放到当前光标的位置之上；整行文本放在行下面，若是非整行文本则放在光标后面</td>
+</tr>
+<tr>
+<td>u</td>
+<td>撤销最近的修改，针对所有修改</td>
+</tr>
+<tr>
+<td>U</td>
+<td>撤销对当前行上做的所有修改</td>
+</tr>
+<tr>
+<td>r</td>
+<td>替换光标位置上的一个字符，但不会进入 <code>insert</code> 模式，先按 <code>r</code> 再按要替换成的字符，也可以 <code>2r</code> 把光标后面两个都替换掉</td>
+</tr>
+<tr>
+<td>R</td>
+<td>替换从光标位置开始的字符，同时改变 <code>vim</code> 到文本输入模式</td>
+</tr>
+<tr>
+<td>.</td>
+<td>重复上一次的修改 – 注意该命令是英文符号点</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>向右移动本行一段距离</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>向左移动本行一段距离</td>
+</tr>
+</tbody></table>
+<h3 id="翻页命令"><a href="#翻页命令" class="headerlink" title="翻页命令"></a>翻页命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl + d</td>
+<td>将光标向下翻半屏，通常每次翻屏12行</td>
+</tr>
+<tr>
+<td>Ctrl + u</td>
+<td>将光标向上翻半屏，通常每次翻屏12行</td>
+</tr>
+<tr>
+<td>Ctrl + f</td>
+<td>将光标向下翻满屏，通常每次翻屏24行</td>
+</tr>
+<tr>
+<td>Ctrl + b</td>
+<td>将光标向上翻满屏，通常每次翻屏24行</td>
+</tr>
+</tbody></table>
+<h2 id="输入模式"><a href="#输入模式" class="headerlink" title="输入模式"></a>输入模式</h2><p>这个模式是我们熟悉的文本编辑器的模式，就是可以输入任何你想输入的内容。进入这个模式有几种方法，最常用的方法是按字母键 <code>i</code> （ <code>i、I、a、A、o、O</code> 都可以进入插入模式，只是所处的位置不同），退出这种模式，只需要按下 <code>Esc</code> 键。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i</td>
+<td>在光标的<code>左侧</code>输入文本，光标右侧文本向右移动</td>
+</tr>
+<tr>
+<td>I</td>
+<td>在光标所在<code>行的行首</code>输入文本，相当于在行首执行了 i 命令</td>
+</tr>
+<tr>
+<td>a</td>
+<td>在光标的<code>右侧</code>输入文本</td>
+</tr>
+<tr>
+<td>A</td>
+<td>在光标所在<code>行的尾部</code>进行输入文本，相当于在光标行尾执行a命令</td>
+</tr>
+<tr>
+<td>o</td>
+<td>在光标所在行的<code>下一行</code>增添新的一行，光标停留在新行的行首</td>
+</tr>
+<tr>
+<td>O</td>
+<td>在光标所在行的<code>上一行</code>增添新的一行，光标停留在新行的行首</td>
+</tr>
+</tbody></table>
+<p><code>输入模式（Insert mode）</code>没什么可说的了，就是进入了编辑模式，可以自由编辑了。</p>
+<h2 id="底线命令模式"><a href="#底线命令模式" class="headerlink" title="底线命令模式"></a>底线命令模式</h2><p><code>vim</code> 的底线命令模式：在命令模式下按<code>:</code>(<strong>注意是英文冒号</strong>)，此时vim的窗口左下方会出现一个<code>:</code>符号，这时就已经进入了底线命令模式了。</p>
+<p><strong>注意：</strong> 指令执行之后会把自动返回到命令行模式的。</p>
+<p><strong>作用：</strong> 底线命令模式可以对文件中指定的内容进行保存、替换、查询、删除等等操作。</p>
+<h3 id="常用命令-1"><a href="#常用命令-1" class="headerlink" title="常用命令"></a>常用命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:q</td>
+<td>退出 <code>vim</code> 编辑器</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>不保存文件，直接退出 <code>vim</code> 编辑器</td>
+</tr>
+<tr>
+<td>:w</td>
+<td>只保存文件，但不退出 <code>vim</code> 编辑器</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>保存文件且退出 <code>vim</code> 编辑器</td>
+</tr>
+<tr>
+<td>ZZ</td>
+<td>保存文件且退出 <code>vim</code> 编辑器</td>
+</tr>
+<tr>
+<td>:<code>start</code>,<code>endd</code></td>
+<td>从第 start 行开始到 end 行进行删除操作 最后一个 d 表示删除，如 <code>:3,4d</code></td>
+</tr>
+<tr>
+<td>:%d</td>
+<td>清空文件内容(跳到行首 dG 执行也可删除)</td>
+</tr>
+<tr>
+<td>:! <code>command</code></td>
+<td>暂时离开vim编辑器去到指令模式下执行 command 命令显示结果，如 <code>:!ls</code></td>
+</tr>
+<tr>
+<td>:&#x2F;<code>string</code></td>
+<td>从文件首部开始查找到尾部；按 n 键可以跳到下一个，N 上一个，另外按 &#x2F; 键后，按上下键可以找到以前查找的记录，同样的也有记录</td>
+</tr>
+<tr>
+<td>:?<code>string</code></td>
+<td>同上，从当前光标向文件首部查找</td>
+</tr>
+<tr>
+<td>:%s&#x2F;<code>word1</code>&#x2F;<code>word2</code>&#x2F;g</td>
+<td>从文件首到尾替换每一行的 word1为 word2</td>
+</tr>
+<tr>
+<td>:set nu</td>
+<td>显示行号 也可以输入 set number</td>
+</tr>
+<tr>
+<td>:set nonu</td>
+<td>取消行号</td>
+</tr>
+<tr>
+<td>:set ai&#x2F;noai</td>
+<td>开启&#x2F;关闭自动缩进</td>
+</tr>
+</tbody></table>
+<h2 id="其他模式"><a href="#其他模式" class="headerlink" title="其他模式"></a>其他模式</h2><p><code>ctrl + v</code> 进入 <strong>块选择模式</strong>，我们通过一个案例来展示这个模式的基本使用。</p>
+<p><strong>vim 中批量添加注释</strong></p>
+<pre><code class="bash">批量注释：         
+1、ctrl + v 进入块选择模式，然后移动光标选中你要注释的行，  ​          
+2、再按大写的 I 进入行首插入模式输入注释符号；例如：#号或者//(双斜线)，  ​          
+3、输入完毕之后，按两下 ESC，Vim 会自动将你选中的所有行首都加上注释。            
+批量取消注释：          
+1、ctrl + v 进入块选择模式，选中你要删除的行首的注释符号，  ​          
+2、按 d 即可删除注释。
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
