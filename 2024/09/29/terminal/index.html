@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>zhanwei | ming&#39;s blog</title>
-  <meta name="keywords" content=" 测试环境 ">
-  <meta name="description" content="zhanwei | ming&#39;s blog">
+  <title>terminal | ming&#39;s blog</title>
+  <meta name="keywords" content=" tools ">
+  <meta name="description" content="terminal | ming&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安全练习生：渗透测试、代码审计、应急响应、服务加固用于记录一些常见问题的解决方案，以及一些学习过程中的弯弯绕绕。">
 <meta property="og:type" content="website">
@@ -384,9 +384,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-zhanwei" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-terminal" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">zhanwei</h1>
+        <h1 class="article-title">terminal</h1>
     
     <div class="article-meta">
         
@@ -396,7 +396,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="代码审计">代码审计</a>
+            <a  data-rel="终端">终端</a>
             
         </span>
         
@@ -404,14 +404,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">测试环境</a>
+            <a class="color1">tools</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-29 14:58:11'>2024-09-29 02:56</time>
+            Created At : <time class="date" title='Updated At: 2024-09-29 18:34:56'>2024-09-29 18:30</time>
         
     </div>
     <div class="article-meta">
@@ -449,7 +449,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><code>screen</code> 是一个强大的终端多路复用工具，以下是一些常用指令：</p>
+<ol>
+<li><strong>启动新会话</strong>：</li>
+</ol>
+<pre><code class="bash">screen
+</code></pre>
+<ol start="2">
+<li><strong>命名会话</strong>：</li>
+</ol>
+<pre><code class="bash">screen -S &lt;session_name&gt;
+</code></pre>
+<ol start="3">
+<li><strong>列出会话</strong>：</li>
+</ol>
+<pre><code class="bash">screen -ls
+</code></pre>
+<ol start="4">
+<li><strong>重新连接会话</strong>：</li>
+</ol>
+<pre><code class="bash">screen -r &lt;session_name&gt;
+</code></pre>
+<ol start="5">
+<li><strong>分离会话</strong>（保持会话在后台运行）：</li>
+</ol>
+<ul>
+<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>D</code></li>
+</ul>
+<ol start="6">
+<li><strong>终止会话</strong>：</li>
+</ol>
+<ul>
+<li>在会话中输入 <code>exit</code> 或者使用快捷键 <code>Ctrl + A</code> 然后按 <code>K</code> 来杀死当前窗口</li>
+</ul>
+<ol start="7">
+<li><strong>在会话间切换</strong>：</li>
+</ol>
+<ul>
+<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>N</code>（下一个）或 <code>P</code>（上一个）</li>
+</ul>
+<ol start="8">
+<li><strong>创建新窗口</strong>：</li>
+</ol>
+<ul>
+<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>C</code></li>
+</ul>
+<ol start="9">
+<li><strong>查看帮助</strong>：</li>
+</ol>
+<ul>
+<li>使用快捷键 <code>Ctrl + A</code> 然后按 <code>?</code></li>
+</ul>
+<p><code>Ctrl + A</code> 然后按 <code>K</code> 来终止当前窗口</p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
