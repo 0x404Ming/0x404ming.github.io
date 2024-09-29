@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>terminal 终端复用 | ming&#39;s blog</title>
+  <title>tmux/screen 常用指令 | ming&#39;s blog</title>
   <meta name="keywords" content=" tools ">
-  <meta name="description" content="terminal 终端复用 | ming&#39;s blog">
+  <meta name="description" content="tmux/screen 常用指令 | ming&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安全练习生：渗透测试、代码审计、应急响应、服务加固用于记录一些常见问题的解决方案，以及一些学习过程中的弯弯绕绕。">
 <meta property="og:type" content="website">
@@ -165,40 +165,25 @@
             
                 
     <li>
+        <div data-rel="终端">
+            
+            终端
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
         <div data-rel="工具汇总">
             
             工具汇总
             <small>(1)</small>
-        </div>
-        
-    </li>
-
-            
-        
-    
-        
-            
-                
-    <li>
-        <div data-rel="闲言碎语">
-            
-            闲言碎语
-            <small>(1)</small>
-        </div>
-        
-    </li>
-
-            
-        
-    
-        
-            
-                
-    <li>
-        <div data-rel="终端">
-            
-            终端
-            <small>(2)</small>
         </div>
         
     </li>
@@ -301,6 +286,15 @@
         
         
         <a  class="All 终端 "
+           href="/2024/09/29/jenv/"
+           data-tag="tools"
+           data-author="" >
+            <span class="post-title" title="jenv linux下Java版本切换">jenv linux下Java版本切换</span>
+            <span class="post-date" title="2024-09-29 19:27:27">2024/09/29</span>
+        </a>
+        
+        
+        <a  class="All 终端 "
            href="/2024/09/29/vim/"
            data-tag="tools"
            data-author="" >
@@ -313,7 +307,7 @@
            href="/2024/09/29/terminal/"
            data-tag="tools"
            data-author="" >
-            <span class="post-title" title="terminal 终端复用">terminal 终端复用</span>
+            <span class="post-title" title="tmux/screen 常用指令">tmux/screen 常用指令</span>
             <span class="post-date" title="2024-09-29 18:30:32">2024/09/29</span>
         </a>
         
@@ -342,15 +336,6 @@
            data-author="" >
             <span class="post-title" title="tools">tools</span>
             <span class="post-date" title="2024-09-29 03:03:06">2024/09/29</span>
-        </a>
-        
-        
-        <a  class="All 闲言碎语 "
-           href="/2024/09/29/life/"
-           data-tag="测试环境"
-           data-author="" >
-            <span class="post-title" title="life">life</span>
-            <span class="post-date" title="2024-09-29 03:00:40">2024/09/29</span>
         </a>
         
         
@@ -391,7 +376,7 @@
     <div class="pjax">
         <article id="post-terminal" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">terminal 终端复用</h1>
+        <h1 class="article-title">tmux/screen 常用指令</h1>
     
     <div class="article-meta">
         
@@ -416,7 +401,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-29 18:55:57'>2024-09-29 18:30</time>
+            Created At : <time class="date" title='Updated At: 2024-09-29 19:33:41'>2024-09-29 18:30</time>
         
     </div>
     <div class="article-meta">
@@ -438,7 +423,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="toc-text">会话管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%92%8C%E9%9D%A2%E6%9D%BF%E6%93%8D%E4%BD%9C"><span class="toc-text">窗口和面板操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD"><span class="toc-text">关闭</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%92%8C%E9%9D%A2%E6%9D%BF%E6%93%8D%E4%BD%9C%EF%BC%88%E6%9B%B4%E9%AB%98%E7%BA%A7%EF%BC%89"><span class="toc-text">窗口和面板操作（更高级）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%92%8C%E8%B0%83%E6%95%B4"><span class="toc-text">设置和调整</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#screen"><span class="toc-text">screen</span></a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="toc-text">会话管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%92%8C%E9%9D%A2%E6%9D%BF%E6%93%8D%E4%BD%9C"><span class="toc-text">窗口和面板操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD"><span class="toc-text">关闭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%92%8C%E9%9D%A2%E6%9D%BF%E6%93%8D%E4%BD%9C%EF%BC%88%E6%9B%B4%E9%AB%98%E7%BA%A7%EF%BC%89"><span class="toc-text">窗口和面板操作（更高级）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%92%8C%E8%B0%83%E6%95%B4"><span class="toc-text">设置和调整</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#screen"><span class="toc-text">screen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C-1"><span class="toc-text">基本操作</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -454,7 +439,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
+        <h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
 <li><p><strong>启动 tmux 会话</strong>:</p>
 <p>  <code>tmux</code></p>
 </li>
@@ -509,7 +494,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h2><pre><code>ctrl + d  关闭窗口
+<h3 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h3><pre><code>ctrl + d  关闭窗口
 </code></pre>
 <pre><code>tmux kill-server
 </code></pre>
@@ -535,8 +520,8 @@
 </ul>
 </li>
 </ul>
-<h1 id="screen"><a href="#screen" class="headerlink" title="screen"></a>screen</h1><p><code>screen</code> 是一个强大的终端多路复用工具，以下是一些常用指令：</p>
-<ol>
+<h2 id="screen"><a href="#screen" class="headerlink" title="screen"></a>screen</h2><p><code>screen</code> 是一个强大的终端多路复用工具，以下是一些常用指令：</p>
+<h3 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h3><ol>
 <li><p><strong>启动新会话</strong>：</p>
 <pre><code class="bash">screen
 </code></pre>
@@ -655,13 +640,13 @@
     
     
     .nav {
-        width: 557px;
+        width: 560px;
     }
     .nav.fullscreen {
-        margin-left: -557px;
+        margin-left: -560px;
     }
     .nav-left {
-        width: 135px;
+        width: 138px;
     }
     
     

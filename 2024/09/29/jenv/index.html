@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>life | ming&#39;s blog</title>
-  <meta name="keywords" content=" 测试环境 ">
-  <meta name="description" content="life | ming&#39;s blog">
+  <title>jenv linux下Java版本切换 | ming&#39;s blog</title>
+  <meta name="keywords" content=" tools ">
+  <meta name="description" content="jenv linux下Java版本切换 | ming&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安全练习生：渗透测试、代码审计、应急响应、服务加固用于记录一些常见问题的解决方案，以及一些学习过程中的弯弯绕绕。">
 <meta property="og:type" content="website">
@@ -165,40 +165,25 @@
             
                 
     <li>
+        <div data-rel="终端">
+            
+            终端
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
         <div data-rel="工具汇总">
             
             工具汇总
             <small>(1)</small>
-        </div>
-        
-    </li>
-
-            
-        
-    
-        
-            
-                
-    <li>
-        <div data-rel="闲言碎语">
-            
-            闲言碎语
-            <small>(1)</small>
-        </div>
-        
-    </li>
-
-            
-        
-    
-        
-            
-                
-    <li>
-        <div data-rel="终端">
-            
-            终端
-            <small>(2)</small>
         </div>
         
     </li>
@@ -301,6 +286,15 @@
         
         
         <a  class="All 终端 "
+           href="/2024/09/29/jenv/"
+           data-tag="tools"
+           data-author="" >
+            <span class="post-title" title="jenv linux下Java版本切换">jenv linux下Java版本切换</span>
+            <span class="post-date" title="2024-09-29 19:27:27">2024/09/29</span>
+        </a>
+        
+        
+        <a  class="All 终端 "
            href="/2024/09/29/vim/"
            data-tag="tools"
            data-author="" >
@@ -313,7 +307,7 @@
            href="/2024/09/29/terminal/"
            data-tag="tools"
            data-author="" >
-            <span class="post-title" title="terminal 终端复用">terminal 终端复用</span>
+            <span class="post-title" title="tmux/screen 常用指令">tmux/screen 常用指令</span>
             <span class="post-date" title="2024-09-29 18:30:32">2024/09/29</span>
         </a>
         
@@ -342,15 +336,6 @@
            data-author="" >
             <span class="post-title" title="tools">tools</span>
             <span class="post-date" title="2024-09-29 03:03:06">2024/09/29</span>
-        </a>
-        
-        
-        <a  class="All 闲言碎语 "
-           href="/2024/09/29/life/"
-           data-tag="测试环境"
-           data-author="" >
-            <span class="post-title" title="life">life</span>
-            <span class="post-date" title="2024-09-29 03:00:40">2024/09/29</span>
         </a>
         
         
@@ -389,9 +374,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-life" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-jenv" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">life</h1>
+        <h1 class="article-title">jenv linux下Java版本切换</h1>
     
     <div class="article-meta">
         
@@ -401,7 +386,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="闲言碎语">闲言碎语</a>
+            <a  data-rel="终端">终端</a>
             
         </span>
         
@@ -409,14 +394,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">测试环境</a>
+            <a class="color1">tools</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-29 15:02:55'>2024-09-29 03:00</time>
+            Created At : <time class="date" title='Updated At: 2024-09-29 19:28:33'>2024-09-29 19:27</time>
         
     </div>
     <div class="article-meta">
@@ -438,7 +423,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jenv-%E9%85%8D%E7%BD%AE"><span class="toc-text">jenv 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">添加环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE"><span class="toc-text">设置全局配置</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -454,7 +439,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="jenv-配置"><a href="#jenv-配置" class="headerlink" title="jenv 配置"></a>jenv 配置</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="bash">git clone https://github.com/jenv/jenv.git ~/.jenv
+</code></pre>
+<h2 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h2><p><strong>添加 jenv 到你的 shell 配置文件（例如 ~&#x2F;.bashrc 或 ~&#x2F;.zshrc）</strong></p>
+<pre><code class="bash">export PATH=&quot;$HOME/.jenv/bin:$PATH&quot;
+eval &quot;$(jenv init -)
+</code></pre>
+<p><strong>重启你的终端或执行 source ~&#x2F;.bashrc 或 source ~&#x2F;.zshrc。</strong><br><strong>添加 Java 版本（确保你已经安装了多个 Java 版本）</strong></p>
+<pre><code class="bash">jenv add /path/to/your/java/version
+</code></pre>
+<h2 id="设置全局配置"><a href="#设置全局配置" class="headerlink" title="设置全局配置"></a>设置全局配置</h2><pre><code class="bash">jenv global &lt;version&gt;
+</code></pre>
+<p><strong>在当前项目目录下</strong></p>
+<pre><code class="bash">jenv local &lt;version&gt;
+</code></pre>
+<p><strong>查看版本信息</strong></p>
+<pre><code>jenv versions
+</code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
@@ -528,13 +530,13 @@
     
     
     .nav {
-        width: 557px;
+        width: 560px;
     }
     .nav.fullscreen {
-        margin-left: -557px;
+        margin-left: -560px;
     }
     .nav-left {
-        width: 135px;
+        width: 138px;
     }
     
     
