@@ -502,7 +502,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-29 21:23:49'>2024-09-29 02:59</time>
+            Created At : <time class="date" title='Updated At: 2024-09-30 17:38:16'>2024-09-29 02:59</time>
         
     </div>
     <div class="article-meta">
@@ -535,7 +535,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jsrpc-yakit"><span class="toc-text">jsrpc yakit</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E6%9C%BA%E7%8E%AF%E5%A2%83"><span class="toc-text">靶机环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#v-jstoos-%E9%85%8D%E7%BD%AE"><span class="toc-text">v_jstoos 配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jsrpc"><span class="toc-text">jsrpc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E5%8A%A0%E5%AF%86%E5%87%BD%E6%95%B0%E5%B0%86%E5%85%B6%E6%B3%A8%E5%86%8C%E5%88%B0%E5%85%A8%E5%B1%80"><span class="toc-text">找到加密函数将其注册到全局</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -551,7 +551,176 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="jsrpc-yakit"><a href="#jsrpc-yakit" class="headerlink" title="jsrpc yakit"></a>jsrpc yakit</h1><h2 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h2><pre><code>通过百度网盘分享的文件：前端加密env.7z
+链接：https://pan.baidu.com/s/1_KK-iGgC9_Tx2MucdFlCKw?pwd=kgux 
+提取码：kgux 
+--来自百度网盘超级会员V4的分享
+</code></pre>
+<h1 id="v-jstoos-配置"><a href="#v-jstoos-配置" class="headerlink" title="v_jstoos 配置"></a>v_jstoos 配置</h1><pre><code>hook-console
+hook-function
+hook-eval
+勾选 `是否在调试输出时，输出函数出发的地址`
+勾选  `是否启用下面几个加解密函数挂钩输出功能`
+hook-JSON.parse
+hook-JSON.stringify
+hook-escape
+hook-atob
+hook-btoa
+</code></pre>
+<h1 id="jsrpc"><a href="#jsrpc" class="headerlink" title="jsrpc"></a>jsrpc</h1><p><strong>项目地址</strong>*</p>
+<pre><code>https://github.com/jxhczhl/JsRpc
+</code></pre>
+<details>
+<summary>chrome 控制台注入</summary>
+
+<pre><code class="js">function Hlclient(wsURL) &#123;
+    this.wsURL = wsURL;
+    this.handlers = &#123;
+        _execjs: function (resolve, param) &#123;
+            var res = eval(param)
+            if (!res) &#123;
+                resolve(&quot;没有返回值&quot;)
+            &#125; else &#123;
+                resolve(res)
+            &#125;
+
+        &#125;
+    &#125;;
+    this.socket = undefined;
+    if (!wsURL) &#123;
+        throw new Error(&#39;wsURL can not be empty!!&#39;)
+    &#125;
+    this.connect()
+&#125;
+
+Hlclient.prototype.connect = function () &#123;
+    console.log(&#39;begin of connect to wsURL: &#39; + this.wsURL);
+    var _this = this;
+    try &#123;
+        this.socket = new WebSocket(this.wsURL);
+        this.socket.onmessage = function (e) &#123;
+            _this.handlerRequest(e.data)
+        &#125;
+    &#125; catch (e) &#123;
+        console.log(&quot;connection failed,reconnect after 10s&quot;);
+        setTimeout(function () &#123;
+            _this.connect()
+        &#125;, 10000)
+    &#125;
+    this.socket.onclose = function () &#123;
+        console.log(&#39;rpc已关闭&#39;);
+        setTimeout(function () &#123;
+            _this.connect()
+        &#125;, 10000)
+    &#125;
+    this.socket.addEventListener(&#39;open&#39;, (event) =&gt; &#123;
+        console.log(&quot;rpc连接成功&quot;);
+    &#125;);
+    this.socket.addEventListener(&#39;error&#39;, (event) =&gt; &#123;
+        console.error(&#39;rpc连接出错,请检查是否打开服务端:&#39;, event.error);
+    &#125;);
+
+&#125;;
+Hlclient.prototype.send = function (msg) &#123;
+    this.socket.send(msg)
+&#125;
+
+Hlclient.prototype.regAction = function (func_name, func) &#123;
+    if (typeof func_name !== &#39;string&#39;) &#123;
+        throw new Error(&quot;an func_name must be string&quot;);
+    &#125;
+    if (typeof func !== &#39;function&#39;) &#123;
+        throw new Error(&quot;must be function&quot;);
+    &#125;
+    console.log(&quot;register func_name: &quot; + func_name);
+    this.handlers[func_name] = func;
+    return true
+
+&#125;
+
+//收到消息后这里处理，
+Hlclient.prototype.handlerRequest = function (requestJson) &#123;
+    var _this = this;
+    try &#123;
+        var result = JSON.parse(requestJson)
+    &#125; catch (error) &#123;
+        console.log(&quot;catch error&quot;, requestJson);
+        result = transjson(requestJson)
+    &#125;
+    //console.log(result)
+    if (!result[&#39;action&#39;]) &#123;
+        this.sendResult(&#39;&#39;, &#39;need request param &#123;action&#125;&#39;);
+        return
+    &#125;
+    var action = result[&quot;action&quot;]
+    var theHandler = this.handlers[action];
+    if (!theHandler) &#123;
+        this.sendResult(action, &#39;action not found&#39;);
+        return
+    &#125;
+    try &#123;
+        if (!result[&quot;param&quot;]) &#123;
+            theHandler(function (response) &#123;
+                _this.sendResult(action, response);
+            &#125;)
+            return
+        &#125;
+        var param = result[&quot;param&quot;]
+        try &#123;
+            param = JSON.parse(param)
+        &#125; catch (e) &#123;&#125;
+        theHandler(function (response) &#123;
+            _this.sendResult(action, response);
+        &#125;, param)
+
+    &#125; catch (e) &#123;
+        console.log(&quot;error: &quot; + e);
+        _this.sendResult(action, e);
+    &#125;
+&#125;
+
+Hlclient.prototype.sendResult = function (action, e) &#123;
+    if (typeof e === &#39;object&#39; &amp;&amp; e !== null) &#123;
+        try &#123;
+            e = JSON.stringify(e)
+        &#125; catch (v) &#123;
+            console.log(v)//不是json无需操作
+        &#125;
+    &#125;
+    this.send(action + atob(&quot;aGxeX14&quot;) + e);
+&#125;
+
+function transjson(formdata) &#123;
+    var regex = /&quot;action&quot;:(?&lt;actionName&gt;.*?),/g
+    var actionName = regex.exec(formdata).groups.actionName
+    stringfystring = formdata.match(/&#123;..data..:.*..\w+..:\s...*?..&#125;/g).pop()
+    stringfystring = stringfystring.replace(/\\&quot;/g, &#39;&quot;&#39;)
+    paramstring = JSON.parse(stringfystring)
+    tens = `&#123;&quot;action&quot;:` + actionName + `,&quot;param&quot;:&#123;&#125;&#125;`
+    tjson = JSON.parse(tens)
+    tjson.param = paramstring
+    return tjson
+&#125;
+</code></pre>
+</details>
+
+<p> <strong>注册到demo</strong></p>
+<pre><code>  var demo = new Hlclient(&quot;ws://127.0.0.1:12080/ws?group=zzz&quot;);
+</code></pre>
+<h2 id="找到加密函数将其注册到全局"><a href="#找到加密函数将其注册到全局" class="headerlink" title="找到加密函数将其注册到全局"></a>找到加密函数将其注册到全局</h2><pre><code class="js">window.enc() = l
+
+#测试
+enc(&quot;123&quot;)
+</code></pre>
+<p>  <strong>向jsrpc注册函数</strong></p>
+<pre><code>#有参
+demo.regAction(&quot;enc&quot;, function (resolve, param) &#123;
+  var res = enc(String(param));
+  resolve(res);
+&#125;)
+</code></pre>
+<p><strong>参考文章</strong> ：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/14629">https://xz.aliyun.com/t/14629</a></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
     </div>
