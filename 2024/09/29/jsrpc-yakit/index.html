@@ -502,7 +502,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-30 17:38:16'>2024-09-29 02:59</time>
+            Created At : <time class="date" title='Updated At: 2024-09-30 17:54:46'>2024-09-29 02:59</time>
         
     </div>
     <div class="article-meta">
@@ -567,7 +567,7 @@ hook-escape
 hook-atob
 hook-btoa
 </code></pre>
-<h1 id="jsrpc"><a href="#jsrpc" class="headerlink" title="jsrpc"></a>jsrpc</h1><p><strong>项目地址</strong>*</p>
+<h1 id="jsrpc"><a href="#jsrpc" class="headerlink" title="jsrpc"></a>jsrpc</h1><p><strong>项目地址</strong></p>
 <pre><code>https://github.com/jxhczhl/JsRpc
 </code></pre>
 <details>
@@ -718,6 +718,84 @@ demo.regAction(&quot;enc&quot;, function (resolve, param) &#123;
   var res = enc(String(param));
   resolve(res);
 &#125;)
+</code></pre>
+<p><strong>调试</strong></p>
+<pre><code>http://127.0.0.1:12080/go?group=zzz&amp;action=enc&amp;param=123
+</code></pre>
+<p><strong>断点调试全部加载</strong></p>
+<pre><code>//时间戳
+window.time = Date.parse
+//requestId
+window.id = p
+//v函数
+window.v1 = v
+//签名
+window.m = a.a.MD5
+//加密
+window.enc = l
+</code></pre>
+<p><strong>注册</strong></p>
+<pre><code>//md5函数
+demo.regAction(&quot;req&quot;, function (resolve,param) &#123;
+    //请求头
+    let timestamp = time(new Date());
+    let requestid = id();
+    let v_data = JSON.stringify(v1(param));
+    let sign = m(v_data + requestid + timestamp).toString();
+    //加密请求体
+    let encstr = enc(v_data);
+
+    let res = &#123;
+        &quot;timestamp&quot;:timestamp,
+        &quot;requestid&quot;:requestid,
+        &quot;encstr&quot;:encstr,
+        &quot;sign&quot;:sign
+    &#125;;
+    resolve(res);
+&#125;)
+</code></pre>
+<p><strong>jsrpc 热加载配置</strong></p>
+<pre><code>// 定义加密函数
+func getEnc(data)&#123;
+    rsp,rep,err = poc.Post(&quot;http://127.0.0.1:12080/go&quot;,poc.replaceBody(&quot;group=zzz&amp;action=req&amp;param=&quot;+data, false),poc.appendHeader(&quot;content-type&quot;, &quot;application/x-www-form-urlencoded&quot;))
+    if(err)&#123;
+        return(err)
+    &#125;
+
+    return json.loads(rsp.GetBody())[&quot;data&quot;]
+&#125;
+
+// beforeRequest 允许发送数据包前再做一次处理，定义为 func(origin []byte) []byte
+beforeRequest = func(req) &#123;
+    //获取请求体
+    req_body = poc.GetHTTPPacketBody(req)
+    //加密
+    res = getEnc(string(req_body))
+    //获取其他的参数
+    res = json.loads(res)
+
+    //修改其他的请求头
+    req = poc.ReplaceHTTPPacketHeader(req, &quot;requestId&quot;, res[&quot;requestid&quot;])
+    req = poc.ReplaceHTTPPacketHeader(req, &quot;timestamp&quot;, res[&quot;timestamp&quot;])
+    req = poc.ReplaceHTTPPacketHeader(req, &quot;sign&quot;, res[&quot;sign&quot;])
+
+    //修改请求体
+    req = poc.ReplaceHTTPPacketBody(req, res[&quot;encstr&quot;])
+
+
+    return []byte(req)
+&#125;
+
+// afterRequest 允许对每一个请求的响应做处理，定义为 func(origin []byte) []byte
+afterRequest = func(rsp) &#123;
+    return []byte(rsp)
+&#125;
+
+// mirrorHTTPFlow 允许对每一个请求的响应做处理，定义为 func(req []byte, rsp []byte, params map[string]any) map[string]any
+// 返回值回作为下一个请求的参数，或者提取的数据，如果你需要解密响应内容，在这里操作是最合适的
+mirrorHTTPFlow = func(req, rsp, params) &#123;
+    return params
+&#125;
 </code></pre>
 <p><strong>参考文章</strong> ：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/14629">https://xz.aliyun.com/t/14629</a></p>
 
