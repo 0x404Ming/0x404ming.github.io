@@ -502,7 +502,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-10-01 18:05:04'>2024-09-29 02:59</time>
+            Created At : <time class="date" title='Updated At: 2024-10-01 18:16:07'>2024-09-29 02:59</time>
         
     </div>
     <div class="article-meta">
@@ -826,54 +826,75 @@ demo.regAction(&quot;decrypt&quot;, function (resolve,param) &#123;
 </code></pre>
 <h2 id="afterrequest-解密"><a href="#afterrequest-解密" class="headerlink" title="afterrequest 解密"></a>afterrequest 解密</h2><details>
 <summary>在响应体加入 decodestr key</summary>
-    ```
-    // 定义加密函数
-func getEnc(data){
-    rsp,rep,err = poc.Post("http://127.0.0.1:12080/go",poc.replaceBody("group=zzz&action=req&param="+data, false),poc.appendHeader("content-type", "application/x-www-form-urlencoded"))
-    if(err){
+
+<pre><code class="js">// 定义加密函数
+func getEnc(data)&#123;
+    rsp,rep,err = poc.Post(&quot;http://127.0.0.1:12080/go&quot;,poc.replaceBody(&quot;group=zzz&amp;action=req&amp;param=&quot;+data, false),poc.appendHeader(&quot;content-type&quot;, &quot;application/x-www-form-urlencoded&quot;))
+    if(err)&#123;
         return(err)
-    }
+    &#125;
 
-<pre><code>return json.loads(rsp.GetBody())[&quot;data&quot;]
-</code></pre>
-<p>}</p>
-<p>func getDec(origin){</p>
-<pre><code>//JSrpc的group
-group = &quot;zzz&quot;;
-//jsrpc的action
-action = &quot;decrypt&quot;;
-rsp,rep = poc.Post(&quot;http://127.0.0.1:12080/go&quot;,poc.replaceBody(&quot;group=&quot;+group+&quot;&amp;action=&quot;+action+&quot;&amp;param=&quot;+codec.EncodeUrl(origin), false),poc.appendHeader(&quot;content-type&quot;, &quot;application/x-www-form-urlencoded&quot;))~
+    return json.loads(rsp.GetBody())[&quot;data&quot;]
 
-return json.loads(rsp.GetBody())[&quot;data&quot;];
-</code></pre>
-<p>}</p>
-<p>&#x2F;&#x2F; beforeRequest 允许发送数据包前再做一次处理，定义为 func(origin []byte) []byte<br>beforeRequest &#x3D; func(req) {<br>    &#x2F;&#x2F;获取请求体<br>    req_body &#x3D; poc.GetHTTPPacketBody(req)<br>    &#x2F;&#x2F;加密<br>    res &#x3D; getEnc(string(req_body))<br>    &#x2F;&#x2F;获取其他的参数<br>    res &#x3D; json.loads(res)</p>
-<pre><code>//修改其他的请求头
-req = poc.ReplaceHTTPPacketHeader(req, &quot;requestId&quot;, res[&quot;requestid&quot;])
-req = poc.ReplaceHTTPPacketHeader(req, &quot;timestamp&quot;, res[&quot;timestamp&quot;])
-req = poc.ReplaceHTTPPacketHeader(req, &quot;sign&quot;, res[&quot;sign&quot;])
+&#125;
 
-//修改请求体
-req = poc.ReplaceHTTPPacketBody(req, res[&quot;encstr&quot;])
+func getDec(origin)&#123;
 
+    //JSrpc的group
+    group = &quot;zzz&quot;;
+    //jsrpc的action
+    action = &quot;decrypt&quot;;
+    rsp,rep = poc.Post(&quot;http://127.0.0.1:12080/go&quot;,poc.replaceBody(&quot;group=&quot;+group+&quot;&amp;action=&quot;+action+&quot;&amp;param=&quot;+codec.EncodeUrl(origin), false),poc.appendHeader(&quot;content-type&quot;, &quot;application/x-www-form-urlencoded&quot;))~
+    
+    return json.loads(rsp.GetBody())[&quot;data&quot;];
 
-return []byte(req)
-</code></pre>
-<p>}</p>
-<p>&#x2F;&#x2F; afterRequest 允许对每一个请求的响应做处理，定义为 func(origin []byte) []byte<br>afterRequest &#x3D; func(rsp) {<br>    &#x2F;&#x2F; 获取响应体<br>    rsp_body &#x3D; poc.GetHTTPPacketBody(rsp)<br>    rsp &#x3D; poc.AppendHTTPPacketHeader(rsp, “decodestr”, getDec(string(rsp_body)))</p>
-<pre><code>// 返回解码后的数据
- return []byte(rsp)
-</code></pre>
-<p>}</p>
-<p>&#x2F;&#x2F; mirrorHTTPFlow 允许对每一个请求的响应做处理，定义为 func(req []byte, rsp []byte, params map[string]any) map[string]any<br>&#x2F;&#x2F; 返回值回作为下一个请求的参数，或者提取的数据，如果你需要解密响应内容，在这里操作是最合适的<br>mirrorHTTPFlow &#x3D; func(req, rsp, params) {<br>    return params<br>}</p>
-<pre><code>```
+&#125;
+
+// beforeRequest 允许发送数据包前再做一次处理，定义为 func(origin []byte) []byte
+beforeRequest = func(req) &#123;
+    //获取请求体
+    req_body = poc.GetHTTPPacketBody(req)
+    //加密
+    res = getEnc(string(req_body))
+    //获取其他的参数
+    res = json.loads(res)
+
+    //修改其他的请求头
+    req = poc.ReplaceHTTPPacketHeader(req, &quot;requestId&quot;, res[&quot;requestid&quot;])
+    req = poc.ReplaceHTTPPacketHeader(req, &quot;timestamp&quot;, res[&quot;timestamp&quot;])
+    req = poc.ReplaceHTTPPacketHeader(req, &quot;sign&quot;, res[&quot;sign&quot;])
+    
+    //修改请求体
+    req = poc.ReplaceHTTPPacketBody(req, res[&quot;encstr&quot;])
+    
+    
+    return []byte(req)
+
+&#125;
+
+// afterRequest 允许对每一个请求的响应做处理，定义为 func(origin []byte) []byte
+afterRequest = func(rsp) &#123;
+    // 获取响应体
+    rsp_body = poc.GetHTTPPacketBody(rsp)
+    rsp = poc.AppendHTTPPacketHeader(rsp, &quot;decodestr&quot;, getDec(string(rsp_body)))
+
+    // 返回解码后的数据
+     return []byte(rsp)
+
+&#125;
+
+// mirrorHTTPFlow 允许对每一个请求的响应做处理，定义为 func(req []byte, rsp []byte, params map[string]any) map[string]any
+// 返回值回作为下一个请求的参数，或者提取的数据，如果你需要解密响应内容，在这里操作是最合适的
+mirrorHTTPFlow = func(req, rsp, params) &#123;
+    return params
+&#125;
 </code></pre>
 </details>
 
 <p><strong>引用文章</strong>: <a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/14629">https://xz.aliyun.com/t/14629</a><br><strong>yakit api</strong>: <a target="_blank" rel="noopener" href="https://www.yaklang.com/docs/api/poc/">https://www.yaklang.com/docs/api/poc/</a></p>
 
       
-       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。与我联系email c2VjaW5mby5tQGdtYWlsLmNvbQo= </span>
     </div>
 </article>
 
