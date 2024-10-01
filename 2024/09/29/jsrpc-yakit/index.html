@@ -502,7 +502,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-30 18:24:39'>2024-09-29 02:59</time>
+            Created At : <time class="date" title='Updated At: 2024-10-01 18:05:04'>2024-09-29 02:59</time>
         
     </div>
     <div class="article-meta">
@@ -535,7 +535,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jsrpc-yakit"><span class="toc-text">jsrpc yakit</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E6%9C%BA%E7%8E%AF%E5%A2%83"><span class="toc-text">靶机环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#v-jstoos-%E9%85%8D%E7%BD%AE"><span class="toc-text">v_jstoos 配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jsrpc"><span class="toc-text">jsrpc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E5%8A%A0%E5%AF%86%E5%87%BD%E6%95%B0%E5%B0%86%E5%85%B6%E6%B3%A8%E5%86%8C%E5%88%B0%E5%85%A8%E5%B1%80"><span class="toc-text">找到加密函数将其注册到全局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E6%8F%92%E4%BB%B6"><span class="toc-text">解密插件</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jsrpc-yakit"><span class="toc-text">jsrpc yakit</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E6%9C%BA%E7%8E%AF%E5%A2%83"><span class="toc-text">靶机环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#v-jstoos-%E9%85%8D%E7%BD%AE"><span class="toc-text">v_jstoos 配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jsrpc"><span class="toc-text">jsrpc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E5%8A%A0%E5%AF%86%E5%87%BD%E6%95%B0%E5%B0%86%E5%85%B6%E6%B3%A8%E5%86%8C%E5%88%B0%E5%85%A8%E5%B1%80"><span class="toc-text">找到加密函数将其注册到全局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E6%8F%92%E4%BB%B6"><span class="toc-text">解密插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#afterrequest-%E8%A7%A3%E5%AF%86"><span class="toc-text">afterrequest 解密</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -551,7 +551,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="jsrpc-yakit"><a href="#jsrpc-yakit" class="headerlink" title="jsrpc yakit"></a>jsrpc yakit</h1><h2 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h2><pre><code>通过百度网盘分享的文件：前端加密env.7z
+        <hr>
+<p>title: jsrpc+yakit 不会做题还能写出正确答案<br>date: 2024-09-29 02:59:21<br>categories:</p>
+<ul>
+<li>测试<br>tags:</li>
+<li>codeview</li>
+</ul>
+<hr>
+<h1 id="jsrpc-yakit"><a href="#jsrpc-yakit" class="headerlink" title="jsrpc yakit"></a>jsrpc yakit</h1><h2 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h2><pre><code>通过百度网盘分享的文件：前端加密env.7z
 链接：https://pan.baidu.com/s/1_KK-iGgC9_Tx2MucdFlCKw?pwd=kgux 
 提取码：kgux 
 --来自百度网盘超级会员V4的分享
@@ -570,7 +577,8 @@ hook-btoa
 <h1 id="jsrpc"><a href="#jsrpc" class="headerlink" title="jsrpc"></a>jsrpc</h1><p><strong>项目地址</strong></p>
 <pre><code>https://github.com/jxhczhl/JsRpc
 </code></pre>
-<details>
+<p><strong>操作流程注意 ： 先 注入 jsrpc 在调试模式下将加密函数设为全局，最后向jsrcp注册action</strong></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><details>
 <summary>chrome 控制台注入</summary>
 
 <pre><code class="js">function Hlclient(wsURL) &#123;
@@ -713,7 +721,7 @@ function transjson(formdata) &#123;
 enc(&quot;123&quot;)
 </code></pre>
 <p>  <strong>向jsrpc注册函数</strong></p>
-<pre><code>#有参
+<pre><code>//有参
 demo.regAction(&quot;enc&quot;, function (resolve, param) &#123;
   var res = enc(String(param));
   resolve(res);
@@ -816,7 +824,53 @@ demo.regAction(&quot;decrypt&quot;, function (resolve,param) &#123;
     return json.loads(rsp.GetBody())[&quot;data&quot;];
 &#125;
 </code></pre>
-<p><strong>参考文章</strong> ：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/14629">https://xz.aliyun.com/t/14629</a></p>
+<h2 id="afterrequest-解密"><a href="#afterrequest-解密" class="headerlink" title="afterrequest 解密"></a>afterrequest 解密</h2><details>
+<summary>在响应体加入 decodestr key</summary>
+    ```
+    // 定义加密函数
+func getEnc(data){
+    rsp,rep,err = poc.Post("http://127.0.0.1:12080/go",poc.replaceBody("group=zzz&action=req&param="+data, false),poc.appendHeader("content-type", "application/x-www-form-urlencoded"))
+    if(err){
+        return(err)
+    }
+
+<pre><code>return json.loads(rsp.GetBody())[&quot;data&quot;]
+</code></pre>
+<p>}</p>
+<p>func getDec(origin){</p>
+<pre><code>//JSrpc的group
+group = &quot;zzz&quot;;
+//jsrpc的action
+action = &quot;decrypt&quot;;
+rsp,rep = poc.Post(&quot;http://127.0.0.1:12080/go&quot;,poc.replaceBody(&quot;group=&quot;+group+&quot;&amp;action=&quot;+action+&quot;&amp;param=&quot;+codec.EncodeUrl(origin), false),poc.appendHeader(&quot;content-type&quot;, &quot;application/x-www-form-urlencoded&quot;))~
+
+return json.loads(rsp.GetBody())[&quot;data&quot;];
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; beforeRequest 允许发送数据包前再做一次处理，定义为 func(origin []byte) []byte<br>beforeRequest &#x3D; func(req) {<br>    &#x2F;&#x2F;获取请求体<br>    req_body &#x3D; poc.GetHTTPPacketBody(req)<br>    &#x2F;&#x2F;加密<br>    res &#x3D; getEnc(string(req_body))<br>    &#x2F;&#x2F;获取其他的参数<br>    res &#x3D; json.loads(res)</p>
+<pre><code>//修改其他的请求头
+req = poc.ReplaceHTTPPacketHeader(req, &quot;requestId&quot;, res[&quot;requestid&quot;])
+req = poc.ReplaceHTTPPacketHeader(req, &quot;timestamp&quot;, res[&quot;timestamp&quot;])
+req = poc.ReplaceHTTPPacketHeader(req, &quot;sign&quot;, res[&quot;sign&quot;])
+
+//修改请求体
+req = poc.ReplaceHTTPPacketBody(req, res[&quot;encstr&quot;])
+
+
+return []byte(req)
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; afterRequest 允许对每一个请求的响应做处理，定义为 func(origin []byte) []byte<br>afterRequest &#x3D; func(rsp) {<br>    &#x2F;&#x2F; 获取响应体<br>    rsp_body &#x3D; poc.GetHTTPPacketBody(rsp)<br>    rsp &#x3D; poc.AppendHTTPPacketHeader(rsp, “decodestr”, getDec(string(rsp_body)))</p>
+<pre><code>// 返回解码后的数据
+ return []byte(rsp)
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; mirrorHTTPFlow 允许对每一个请求的响应做处理，定义为 func(req []byte, rsp []byte, params map[string]any) map[string]any<br>&#x2F;&#x2F; 返回值回作为下一个请求的参数，或者提取的数据，如果你需要解密响应内容，在这里操作是最合适的<br>mirrorHTTPFlow &#x3D; func(req, rsp, params) {<br>    return params<br>}</p>
+<pre><code>```
+</code></pre>
+</details>
+
+<p><strong>引用文章</strong>: <a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/14629">https://xz.aliyun.com/t/14629</a><br><strong>yakit api</strong>: <a target="_blank" rel="noopener" href="https://www.yaklang.com/docs/api/poc/">https://www.yaklang.com/docs/api/poc/</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。 </span>
