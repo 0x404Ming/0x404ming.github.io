@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ssh 隧道代理技术 | ming&#39;s blog</title>
-  <meta name="keywords" content=" tools , proxy , 代理 ">
-  <meta name="description" content="ssh 隧道代理技术 | ming&#39;s blog">
+  <title>avbypass | ming&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="avbypass | ming&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安全练习生：渗透测试、代码审计、应急响应、服务加固用于记录一些常见问题的解决方案，以及一些学习过程中的弯弯绕绕。">
 <meta property="og:type" content="website">
@@ -502,40 +502,19 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-sshvpn" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-avbypass" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">ssh 隧道代理技术</h1>
+        <h1 class="article-title">avbypass</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="测试">测试</a> > 
-            
-            <a  data-rel="测试&lt;---&gt;代理配置">代理配置</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color1">tools</a>
-            
-            <a class="color1">proxy</a>
-            
-            <a class="color3">代理</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-09-30 11:59:40'>2024-09-30 11:49</time>
+            Created At : <time class="date" title='Updated At: 2024-10-26 16:15:45'>2024-10-26 16:06</time>
         
     </div>
     <div class="article-meta">
@@ -568,7 +547,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ssh%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF"><span class="toc-text">ssh隧道技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8A%A8%E6%80%81%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91-SOCKS-%E4%BB%A3%E7%90%86"><span class="toc-text">1. 动态端口转发 (SOCKS 代理):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9C%AC%E5%9C%B0%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="toc-text">2. 本地端口转发:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%BF%9C%E7%A8%8B%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="toc-text">3. 远程端口转发:</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -584,36 +563,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="ssh隧道技术"><a href="#ssh隧道技术" class="headerlink" title="ssh隧道技术"></a>ssh隧道技术</h1><p>SSH 端口转发可以在本地和远程服务器之间创建一个加密的隧道，用于安全地传输数据。SSH 支持三种主要的端口转发模式：动态端口转发、本地端口转发和远程端口转发。</p>
-<h2 id="1-动态端口转发-SOCKS-代理"><a href="#1-动态端口转发-SOCKS-代理" class="headerlink" title="1. 动态端口转发 (SOCKS 代理):"></a>1. <strong>动态端口转发 (SOCKS 代理)</strong>:</h2><pre><code>ssh -D [local_port] [user@remote_server]
-</code></pre>
-<pre><code>ssh -D 8080 -fN root@server2
-</code></pre>
-<ol>
-<li><code>ssh</code> - 用于建立 SSH 连接的命令行工具。</li>
-<li><code>-D 8080</code> - 设置 SOCKS 代理在本地机器的 8080 端口。通过这个代理，你可以将网络流量转发到 <code>server2</code>，然后从 <code>server2</code> 出去。</li>
-<li><code>-f</code> - 将 SSH 会话移至后台，这样你不必保持终端打开。</li>
-<li><code>-N</code> - 告诉 SSH 你不打算在远程服务器上运行任何命令；你只是设置代理。</li>
-<li><code>root@server2</code> - 指定你想要以 <code>root</code> 用户的身份登录 <code>server2</code>。</li>
-</ol>
-<p>例如，要在本地机器的 8080 端口上创建一个 SOCKS 代理：</p>
-<pre><code>ssh -D 8080 user@example.com
-</code></pre>
-<p>然后你可以在你的应用程序（如浏览器）中配置 SOCKS 代理为 <code>localhost:8080</code>，所有经过这个代理的流量都会经过 <code>example.com</code>。</p>
-<h2 id="2-本地端口转发"><a href="#2-本地端口转发" class="headerlink" title="2. 本地端口转发:"></a>2. <strong>本地端口转发</strong>:</h2><pre><code>ssh -L [local_port]:[destination_server]:[destination_port] [user@remote_server]
-</code></pre>
-<p>例如，想要将本地机器的 9000 端口的流量转发到 <code>example.com</code> 服务器上的 <code>other_server_on_network:80</code>：</p>
-<pre><code>   ssh -L 9000:other_server_on_network:80 user@example.com
-</code></pre>
-<p>之后你可以在你的本地机器上访问 <code>localhost:9000</code>，它实际上会被转发到 <code>other_server_on_network:80</code>。</p>
-<h2 id="3-远程端口转发"><a href="#3-远程端口转发" class="headerlink" title="3. 远程端口转发:"></a>3. <strong>远程端口转发</strong>:</h2><pre><code>ssh -R [remote_port]:[destination_server]:[destination_port] [user@remote_server]
-</code></pre>
-<p>例如，假设你有一个在本地机器上运行的 web 服务监听在 3000 端口，你想要允许 <code>example.com</code> 上的用户通过他们的 9090 端口来访问它：</p>
-<pre><code>ssh -R 9090:localhost:3000 user@example.com
-</code></pre>
-<p>之后，任何在 <code>example.com</code> 上访问 <code>localhost:9090</code> 的尝试都会被转发到你的本地机器的 3000 端口。</p>
-<p>这些都是端口转发的基础命令。当然，你可以结合其他 SSH 参数（如 <code>-N</code>（不执行命令）、<code>-f</code>（在后台运行）等）来增强端口转发的功能性。</p>
-
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="5bd135d9b7f7218377fd272d426e7f148478df89dd5918ab7dc9f577dd11819c">20f27c2923f47d19e246de4290b7ee6a3404b8b6f776d33b4ee2b65d4a944806229e92ff4423e4c8dab52cb01b87c4a57a2e22f582df232018556e4aefbb5a7856a3ea6c916dcadda45efe769e89d3327d9e5d76735731a02fe6669ff89017a4e37e478b0bc6b212ba17cc346e293143744c8da96a819d79cdf0327aee460a655330ca129f6dd8da9704ca976ea5b266433059e5aa16abf069d657924aa415f5870ca08f0ddaa33021923b5e0827c1fa038bcec2594c553c60593ed98a7acdb3984680c92fc39f0be19906004020572a8ab8f9a0196cc86fe3d1c400def2c107f03b029639e1d45344b4f8ffbebb26822f209f8ea15f56241704ee61bb72b23f3f2e1771bbe3350bd688ac7c19bf270b8802e6ca120b9ccdd92b4580159ec2e5934e184538b727a5fe0c232412b8f2431bb69ffcc02dcc8fc424a4d5976c639b0dd2d311ed61c0195fc65bd3810380f3a5e8521580ebc3a8d254ad87f3886235c53e5554140dc6bbeb8018aec894e8a7bd722066545150deede95b363f64963e1786d37668e87a9b3d6d6232bfb7e599c0c0a08802351a22ff508398af13f801cb1f258429a7460511ee2fc5f119236cccaa7029cebbde84fcf75d10ebc0567df8efbb3a1148b972a8c9d1285473b6551bc5293b903de497e1a7531284f8086b740122c06cda01ee438826411832ad8f889a94ad19f3ff3784393ca4a73b6b487aefba6f345606d40b8c6c87a6d30e74ae0b5d042a90d45373807ab71bd9ebd565d92be89268634aba780c9d535508d60cef01c666dc952d28797c429b5e6efd54ca618646f9cd7cbcc30c971f583322a2d291c17f7bc858919d7d2bcb520648bf56b5abac1488f458257c0ca8ed2deda3e476386a19911245ac582bb9be0f017a5d9d2e1206e0ce298a5cbe7f29dcbae2c3b60ea6fe07b79f67ca9d7bfc6678a33efc8372ec470d4f2144d4d160ea5e7cdc47e6cbed8ee6e36661f89cb4172e1138923e25bd85a4a6570c66ebb4cf06391353fb1002e20150c04cfc4ab353d13f0cb6f397ab28ab73e7be0bd250980bebb2051eeb1b65f842d5d48a4f40fb80a6fc95afb5f5af6c366ee9ed1cc709241bce7f2f13f80f0568c3dd23448984bafad99af68f67018ade4a09dcff85c5da9a5d2eb5a700a521594b688b0b31f8409dc919458b7f9b94d3ab9c118b447a564e76dc433eca2aaddbf9411b939703b1191732d3e529dfbec2bb84c8e67a83303a9cc89311dc102a2f75f3c29448b63a2ca30506360e5f2ee63285113325d2ef4933205fedbeb09d9e483ed30c57f8c50122b8acd805a6764e41b9fdf90f397cdc9cc03cabd6a7ab3c5f2505663b1008dae3ab6beca046c6dec01ec0f52b76f1f1b00d7474fef32e04f0648f5e97f8b8</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。与我联系email c2VjaW5mby5tQGdtYWlsLmNvbQo= </span>
     </div>
