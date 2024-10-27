@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>mitmproxy | ming&#39;s blog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="mitmproxy | ming&#39;s blog">
+  <title>bypass-c2 | ming&#39;s blog</title>
+  <meta name="keywords" content=" bypass ">
+  <meta name="description" content="bypass-c2 | ming&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安全练习生：渗透测试、代码审计、应急响应、服务加固用于记录一些常见问题的解决方案，以及一些学习过程中的弯弯绕绕。">
 <meta property="og:type" content="website">
@@ -515,19 +515,26 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-mitmproxy" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-bypass-c2" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">mitmproxy</h1>
+        <h1 class="article-title">bypass-c2</h1>
     
     <div class="article-meta">
         
         
         
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color2">bypass</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-10-03 13:53:44'>2024-10-03 13:49</time>
+            Created At : <time class="date" title='Updated At: 2024-10-27 22:27:26'>2024-10-27 22:26</time>
         
     </div>
     <div class="article-meta">
@@ -560,7 +567,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#demo"><span class="toc-text">demo</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#bin%E5%85%8D%E6%9D%80"><span class="toc-text">bin免杀</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%85%8D%E6%9D%80"><span class="toc-text">静态免杀</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#api-%E9%9A%90%E8%97%8F"><span class="toc-text">api 隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%A1%8C%E4%B8%BA%E6%A3%80%E6%B5%8B"><span class="toc-text">基于行为检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%85%8D%E6%9D%80"><span class="toc-text">内存免杀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86"><span class="toc-text">可执行代码混淆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shellcode-Fluctuation"><span class="toc-text">shellcode Fluctuation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ROP"><span class="toc-text">ROP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sleep%E9%80%83%E9%81%BF"><span class="toc-text">sleep逃避</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88%E6%AC%BA%E9%AA%97"><span class="toc-text">线程堆栈欺骗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB%EF%BC%9A"><span class="toc-text">推荐阅读：</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -576,41 +583,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h1><p><strong>前端加密</strong></p>
-<pre><code>import json
-import time
-import hashlib
-import uuid
-from mitmproxy import http
-import requests
-import requests
-
-
-def request(flow: http.HTTPFlow) -&gt; None:
-    if flow.request.pretty_url.startswith(&quot;http://192.168.3.18/api/&quot;):
-        # 提取原始请求体
-        original_body = flow.request.content.decode(&#39;utf-8&#39;)
-        data = &#123;&quot;group&quot;: &quot;zzz&quot;, &quot;action&quot;: &quot;req&quot;, &quot;param&quot;: original_body&#125;
-        res = requests.post(&quot;http://127.0.0.1:12080/go&quot;,data=data)
-        res_json = json.loads(res.text)[&quot;data&quot;]
-        data_json = json.loads(res_json)
-        print(data_json)
-        # 对请求体进行加密处理（这里假设加密方法是简单的哈希）
-        encrypted_body = data_json[&quot;encstr&quot;]
-
-        # 替换请求体
-        flow.request.text = encrypted_body
-
-        # 生成 requestId，sign 和 timestamp
-        request_id = data_json[&quot;requestid&quot;]
-        timestamp = data_json[&quot;timestamp&quot;]
-        sign = data_json[&quot;sign&quot;]
-
-        # 添加或替换请求头
-        flow.request.headers[&quot;requestId&quot;] = request_id
-        flow.request.headers[&quot;timestamp&quot;] = str(timestamp)
-        flow.request.headers[&quot;sign&quot;] = sign
-</code></pre>
+        <h1 id="bin免杀"><a href="#bin免杀" class="headerlink" title="bin免杀"></a>bin免杀</h1><p><a target="_blank" rel="noopener" href="https://0range-x.github.io/2022/03/31/%E6%B5%85%E6%9E%90%E6%9D%80%E8%BD%AF/">浅析杀软</a></p>
+<h1 id="静态免杀"><a href="#静态免杀" class="headerlink" title="静态免杀"></a>静态免杀</h1><h2 id="api-隐藏"><a href="#api-隐藏" class="headerlink" title="api 隐藏"></a>api 隐藏</h2><p>导入表隐藏</p>
+<p>更改main入口</p>
+<p>更改api 遍历hash值</p>
+<p>敲掉开头值 用 xxd -i  转变数组 然后 用c++ 写回bin文件 （二进制文件）</p>
+<h2 id="基于行为检测"><a href="#基于行为检测" class="headerlink" title="基于行为检测"></a>基于行为检测</h2><p>z许多api都被牢牢监控 ，如果实现的是采用一些不常见的api 那么可能呗杀软判断为敏感行为，从而弹窗警告直或直接终止进程，所以绕过只能用一些不常用的api更底层的的api或者迂回的方式，将一个api的功能分成几个api来实现</p>
+<h2 id="内存免杀"><a href="#内存免杀" class="headerlink" title="内存免杀"></a>内存免杀</h2><ul>
+<li>systemFunction032 函数 系统函数可以从advapi32.dll 中邪洗出来进行rc4加解密。</li>
+</ul>
+<p>加密数据，而无需在私有提交内存中执行代码。</p>
+<p>1.打开进程句柄</p>
+<p>2.分配内存 RW RWX</p>
+<p>3.shellcode &gt; 内存</p>
+<p>4.RW -&gt; RX</p>
+<p>5.thread</p>
+<p> 为了避免基础签名的检测，我们可以加密：</p>
+<p>1.打开进程句柄</p>
+<p>2.分配内存 RW RWX</p>
+<p>3.解密shellcode ，拿到明文</p>
+<p>4.shellcode&gt; 内存</p>
+<p>5.RW-&gt;RX</p>
+<p>6.thread</p>
+<p>HOOK writeprocessmemory or Ntwriteprocessmemory 可以拿到shellcode明文分析</p>
+<p>更进一步：</p>
+<p>1.打开进程句柄</p>
+<p>2.分配内存 RW RWX</p>
+<p>3.shellcode &gt;  内存</p>
+<p>4.XOR 解密shellcode内存区域</p>
+<p>。。。</p>
+<h2 id="可执行代码混淆"><a href="#可执行代码混淆" class="headerlink" title="可执行代码混淆"></a>可执行代码混淆</h2><h2 id="shellcode-Fluctuation"><a href="#shellcode-Fluctuation" class="headerlink" title="shellcode Fluctuation"></a>shellcode Fluctuation</h2><h2 id="ROP"><a href="#ROP" class="headerlink" title="ROP"></a>ROP</h2><h2 id="sleep逃避"><a href="#sleep逃避" class="headerlink" title="sleep逃避"></a>sleep逃避</h2><h2 id="线程堆栈欺骗"><a href="#线程堆栈欺骗" class="headerlink" title="线程堆栈欺骗"></a>线程堆栈欺骗</h2><h2 id="推荐阅读："><a href="#推荐阅读：" class="headerlink" title="推荐阅读："></a>推荐阅读：</h2><p><a target="_blank" rel="noopener" href="https://vanmieghem.io/blueprint-for-evading-edr-in-2022/">https://vanmieghem.io/blueprint-for-evading-edr-in-2022/</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。与我联系email c2VjaW5mby5tQGdtYWlsLmNvbQo= </span>
