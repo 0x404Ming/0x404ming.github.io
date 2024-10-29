@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>docker 常用指令 | ming&#39;s blog</title>
-  <meta name="keywords" content=" command , docker ">
-  <meta name="description" content="docker 常用指令 | ming&#39;s blog">
+  <title>ganxing | ming&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="ganxing | ming&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="安全练习生：渗透测试、代码审计、应急响应、服务加固用于记录一些常见问题的解决方案，以及一些学习过程中的弯弯绕绕。">
 <meta property="og:type" content="website">
@@ -524,38 +524,19 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-docker" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ganxing" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">docker 常用指令</h1>
+        <h1 class="article-title">ganxing</h1>
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="测试">测试</a> > 
-            
-            <a  data-rel="测试&lt;---&gt;环境配置">环境配置</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color3">command</a>
-            
-            <a class="color2">docker</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2024-10-25 16:47:01'>2024-09-30 13:23</time>
+            Created At : <time class="date" title='Updated At: 2024-10-30 03:59:36'>2024-10-30 03:12</time>
         
     </div>
     <div class="article-meta">
@@ -588,7 +569,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">docker 常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">1. 基本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%95%9C%E5%83%8F%E7%AE%A1%E7%90%86"><span class="toc-text">2. 镜像管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86"><span class="toc-text">3. 容器管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%97%A5%E5%BF%97%E5%92%8C%E8%B0%83%E8%AF%95"><span class="toc-text">4. 日志和调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86"><span class="toc-text">5. 网络管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C"><span class="toc-text">批量操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%B9%E9%87%8F%E5%81%9C%E6%AD%A2%E6%89%80%E6%9C%89%E5%AE%B9%E5%99%A8"><span class="toc-text">1. 批量停止所有容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E5%81%9C%E6%AD%A2%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-text">2. 批量删除所有停止的容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E6%89%80%E6%9C%89%E6%9C%AA%E4%BD%BF%E7%94%A8%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-text">3. 批量删除所有未使用的镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%89%B9%E9%87%8F%E9%87%8D%E5%90%AF%E5%AE%B9%E5%99%A8"><span class="toc-text">4. 批量重启容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%89%B9%E9%87%8F%E6%B8%85%E7%90%86%E6%9C%AA%E4%BD%BF%E7%94%A8%E7%9A%84%E8%B5%84%E6%BA%90"><span class="toc-text">5. 批量清理未使用的资源</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E7%BB%8F%E4%BA%BA%E8%B0%81%E5%86%99%E6%97%A5%E8%AE%B0"><span class="toc-text">正经人谁写日记</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -604,65 +585,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="docker-常用指令"><a href="#docker-常用指令" class="headerlink" title="docker 常用指令"></a>docker 常用指令</h1><h3 id="1-基本信息"><a href="#1-基本信息" class="headerlink" title="1. 基本信息"></a>1. 基本信息</h3><ul>
-<li><strong>查看 Docker 版本</strong>：<pre><code class="bash">docker --version
-</code></pre>
-</li>
-</ul>
-<h3 id="2-镜像管理"><a href="#2-镜像管理" class="headerlink" title="2. 镜像管理"></a>2. 镜像管理</h3><ul>
-<li><strong>拉取镜像</strong>：<pre><code class="bash">docker pull &lt;image_name&gt;
-</code></pre>
-</li>
-<li><strong>列出本地镜像</strong>：<pre><code class="bash">docker images
-</code></pre>
-</li>
-<li><strong>删除镜像</strong>：<pre><code class="bash">docker rmi &lt;image_id&gt;
-</code></pre>
-</li>
-</ul>
-<h3 id="3-容器管理"><a href="#3-容器管理" class="headerlink" title="3. 容器管理"></a>3. 容器管理</h3><ul>
-<li><strong>运行容器</strong>：<pre><code class="bash">docker run &lt;options&gt; &lt;image_name&gt;
-</code></pre>
-</li>
-<li><strong>查看运行中的容器</strong>：<pre><code class="bash">docker ps
-</code></pre>
-</li>
-<li><strong>查看所有容器（包括停止的）</strong>：<pre><code class="bash">docker ps -a
-</code></pre>
-</li>
-<li><strong>停止容器</strong>：<pre><code class="bash">docker stop &lt;container_id&gt;
-</code></pre>
-</li>
-<li><strong>启动容器</strong>：<pre><code class="bash">docker start &lt;container_id&gt;
-</code></pre>
-</li>
-<li><strong>删除容器</strong>：<pre><code class="bash">docker rm &lt;container_id&gt;
-</code></pre>
-</li>
-</ul>
-<h3 id="4-日志和调试"><a href="#4-日志和调试" class="headerlink" title="4. 日志和调试"></a>4. 日志和调试</h3><ul>
-<li><strong>查看容器日志</strong>：<pre><code class="bash">docker logs &lt;container_id&gt;
-</code></pre>
-</li>
-<li><strong>进入运行中的容器</strong>：<pre><code class="bash">docker exec -it &lt;container_id&gt; /bin/bash
-</code></pre>
-</li>
-</ul>
-<h3 id="5-网络管理"><a href="#5-网络管理" class="headerlink" title="5. 网络管理"></a>5. 网络管理</h3><ul>
-<li><strong>查看 Docker 网络</strong>：<pre><code class="bash">docker network ls
-</code></pre>
-</li>
-</ul>
-<h2 id="批量操作"><a href="#批量操作" class="headerlink" title="批量操作"></a>批量操作</h2><h3 id="1-批量停止所有容器"><a href="#1-批量停止所有容器" class="headerlink" title="1. 批量停止所有容器"></a>1. 批量停止所有容器</h3><pre><code class="bash">docker stop $(docker ps -q)
-</code></pre>
-<h3 id="2-批量删除所有停止的容器"><a href="#2-批量删除所有停止的容器" class="headerlink" title="2. 批量删除所有停止的容器"></a>2. 批量删除所有停止的容器</h3><pre><code class="bash">docker rm $(docker ps -aq)
-</code></pre>
-<h3 id="3-批量删除所有未使用的镜像"><a href="#3-批量删除所有未使用的镜像" class="headerlink" title="3. 批量删除所有未使用的镜像"></a>3. 批量删除所有未使用的镜像</h3><pre><code class="bash">docker rmi $(docker images -q -f dangling=true)
-</code></pre>
-<h3 id="4-批量重启容器"><a href="#4-批量重启容器" class="headerlink" title="4. 批量重启容器"></a>4. 批量重启容器</h3><pre><code class="bash">docker restart $(docker ps -q)
-</code></pre>
-<h3 id="5-批量清理未使用的资源"><a href="#5-批量清理未使用的资源" class="headerlink" title="5. 批量清理未使用的资源"></a>5. 批量清理未使用的资源</h3><pre><code class="bash">docker system prune -f
-</code></pre>
+        <h1 id="正经人谁写日记"><a href="#正经人谁写日记" class="headerlink" title="正经人谁写日记"></a>正经人谁写日记</h1><p>22年原本计划找份程序开发的工作，但是在大环境的促使下没能够入行，在表哥的教导下踏入了网络安全，从皮卡丘sql注入靶场文件上传靶场，然后去挖src提交漏洞，再就是一些临时的工作。</p>
+<p>23年正式在北京的一家公司任职，做渗透测试工作基本等同安服，服务器漏扫，web漏扫，人工挖洞，代码审计，诸如此类，可以说是 word 工程师。基本都是在改 word 因为项目结束，都是等保的业务。</p>
+<p>23年我在公司任职，接触一些行业内的公司采购的一些工具，也是积累了一点经验，当时还有每个月写复盘记录的习惯，记录这个月做过什么项目用了什么技术和工具，有哪些技巧诸如此类。</p>
+<p>24年来到深圳一家公司，任职渗透测试工程师，这里就不多说了，只能说在这边收获颇丰，也让我认清在环境和趋势的影响下，不要盲目制定长期计划，原本认为自己怎么也能在深圳工作两年。 但是 也不是个人和公司问题，环境影响吧，但是工资发放问题确实没办法能够支持我在哪里继续工作。</p>
+<p>回顾来看从企业服务的漏洞挖掘，当然经常是 您的系统十分安全（笑）。在离开深圳之后，我都有想要做其他的比如开发，或者进场打螺丝的念头。因为随着我对安全的理解，因为也是一线人员，愈发的认为开发技能是重要的（(#&#96;O′)！ 为什么不直接做开发，狠狠赚一笔），当然随着经验的累积在实战中的打点，和后渗透技术都有了一定了解了。说白了，要有一个坚挺的技术支撑团队，在内网中高防环境基本是自研工具，那么在工具的投入上基本是时刻关注最新的技术。 总结一句就是多看国外文章，和一些安全相关论文。</p>
+<p>从我开始休假开始（无业），可以抽出大量的时间在免杀上从对 payload 处理，分离免杀种种，到我看到一句话，你真的有必要去学做免杀吗，要改的东西那么多，免杀的方法是用一种少一种，因为毕竟被查杀还是因为恶意软件被杀软标记了嘛，如果是内部研发c2那么基本不会被查杀。 然后就花了几天功夫写了一个简单的反弹shell工具，当然随便过360和df。</p>
+<p>中间也部署了蜜罐在自己的服务器上，毕竟自己没部署过这类产品，都是直接用嘛。</p>
+<p>当然回来之后找了几天的工作吧，后面由于是刚回来又面了hvv工作，也是薪资结算周期太长了遂放弃。今年打算完整休息一年，但是回来之后发现有点过分内耗了不如在公司007了。不过好消息是在家不会饿死。</p>
+<p>总结最近在做的事情吧，代码审计 rips 应付一般快速审计php漏洞够用了，我在实战也是如此，自动化代码审计也是一直在看的 codeql 诸如此类的辅助审查工具，确实可以应付部分任务了。 再就是免杀 一言难尽，总之技术是为工程服务的，工程是为需求服务的。哎，纯人力，人力就是时间。时间就是生命。 我的看法就是纯纯堆时间。</p>
+<p>写给自己的，估计在这行也没啥建树了。稳住心境吧</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。与我联系email c2VjaW5mby5tQGdtYWlsLmNvbQo= </span>
